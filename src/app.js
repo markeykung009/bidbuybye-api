@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+// const { sequelize } = require('./models');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -8,6 +9,8 @@ const notFoundMiddleware = require('./middlewares/notfound');
 const errorMiddleware = require('./middlewares/error');
 
 const app = express();
+
+// sequelize.sync({ force: true });
 
 app.use(morgan('dev'));
 app.use(
