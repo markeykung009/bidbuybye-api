@@ -3,11 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     'OrderStatus',
     {
       status: DataTypes.ENUM(
-        'confirmed',
-        'arrivedStore',
-        'verified',
-        'shipped',
-        'completed'
+        'WAITING',
+        'CONFIRMED',
+        'ARRIVED',
+        'VERIFIED',
+        'SHIPPED',
+        'COMPLETED'
       ),
       date: DataTypes.DATE
     },
