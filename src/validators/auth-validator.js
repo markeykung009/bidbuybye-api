@@ -14,17 +14,17 @@ const registerSchema = Joi.object({
   })
 });
 
-// const loginSchema = Joi.object({
-//   email: Joi.string()
-//     .required()
-//     .messages({ 'string.empty': 'email is required' }),
-//   password: Joi.string().required().messages({
-//     'string.empty': 'password is required',
-//     'string.alphanum': 'password must contain number or alphabet',
-//     'string.min': 'password must have at least 6 characters'
-//   })
-// });
+const loginSchema = Joi.object({
+  email: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'email is required' }),
+  password: Joi.string().required().messages({
+    'string.empty': 'password is required',
+    'string.alphanum': 'password must contain number or alphabet',
+    'string.min': 'password must have at least 6 characters'
+  })
+});
 
 exports.validateRegister = validate(registerSchema);
 
-// exports.validateLogin = validate(loginSchema);
+exports.validateLogin = validate(loginSchema);

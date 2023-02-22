@@ -4,17 +4,17 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true
-        }
+        allowNull: true
+        // validate: {
+        //   notEmpty: true
+        // }
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true
-        }
+        allowNull: true
+        // validate: {
+        //   notEmpty: true
+        // }
       },
       email: {
         type: DataTypes.STRING,
@@ -34,10 +34,6 @@ module.exports = (sequelize, DataTypes) => {
       omiseId: {
         type: DataTypes.INTEGER,
         unique: true
-      },
-      isAdmin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
       }
     },
     {
