@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     Bid.hasMany(
       db.Order,
       {
-        foreignKey: 'orderId',
+        foreignKey: 'bidId',
         allowNull: false
       },
       {

@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Size = sequelize.define(
     'Size',
-    { number: DataTypes.STRING, label: DataTypes.STRING },
+    { sizeProduct: DataTypes.STRING, label: DataTypes.STRING },
     { underscored: true }
   );
 
