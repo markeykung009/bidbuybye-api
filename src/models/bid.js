@@ -3,17 +3,22 @@ module.exports = (sequelize, DataTypes) => {
     'Bid',
     {
       price: DataTypes.DECIMAL(10, 2),
-      expiredDate: DataTypes.DATE,
+      expiredDate: DataTypes.ENUM('7DAYS', '14DAYS', '30DAYS'),
       equipment: DataTypes.BOOLEAN,
-      type: DataTypes.ENUM('buyer', 'seller')
+      type: DataTypes.ENUM('BUYER', 'SELLER'),
+      isSold: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     },
+
     {
       underscored: true
     }
   );
 
   Bid.associate = (db) => {
-    Bid.belongsTo(
+    Bid.hasMany(
       db.Order,
       {
         foreignKey: 'bidId',

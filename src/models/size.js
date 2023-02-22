@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Size = sequelize.define(
     'Size',
-    { typeProduct: DataTypes.ENUM('shoes', 'apparel') },
+    { sizeProduct: DataTypes.STRING, label: DataTypes.STRING },
     { underscored: true }
   );
 
