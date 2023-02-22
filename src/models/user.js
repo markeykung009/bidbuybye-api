@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
       omiseId: {
         type: DataTypes.INTEGER,
         unique: true
+      },
+      isAdmin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       }
     },
     {
