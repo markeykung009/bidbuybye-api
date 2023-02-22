@@ -283,8 +283,40 @@ const catergory = [
 
 const size = [
   {
-    number: '38',
+    sizeProduct: '38',
     label: 'Shoes'
+  },
+  {
+    sizeProduct: '39',
+    label: 'Shoes'
+  },
+  {
+    sizeProduct: '40',
+    label: 'Shoes'
+  },
+  {
+    sizeProduct: '41',
+    label: 'Shoes'
+  },
+  {
+    sizeProduct: '42',
+    label: 'Shoes'
+  },
+  {
+    sizeProduct: 'S',
+    label: 'Apparel'
+  },
+  {
+    sizeProduct: 'M',
+    label: 'Apparel'
+  },
+  {
+    sizeProduct: 'L',
+    label: 'Apparel'
+  },
+  {
+    sizeProduct: 'XL',
+    label: 'Apparel'
   }
 ];
 
@@ -314,7 +346,7 @@ const order = [
 
 const orderStatus = [
   {
-    date: '1 Jan 22',
+    date: '2023-02-22 11:29:26',
     createdAt: '2023-02-22 08:29:26',
     updatedAt: '2023-02-22 08:29:26'
   }

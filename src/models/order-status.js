@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         'WAITING',
         'CONFIRMED',
         'ARRIVED',
+        'CANCEL',
         'VERIFIED',
         'SHIPPED',
         'COMPLETED'
