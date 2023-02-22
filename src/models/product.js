@@ -43,10 +43,10 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'RESTRICT'
       }
     );
-    Product.hasMany(
-      db.Category,
+    Product.belongsTo(
+      db.Catergory,
       {
-        foreignKey: 'categoryId',
+        foreignKey: 'catergoryId',
         allowNull: false
       },
       {

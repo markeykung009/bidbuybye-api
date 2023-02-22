@@ -3,21 +3,22 @@ module.exports = (sequelize, DataTypes) => {
     'User',
     {
       firstName: {
-        type: DataTypes.STRING,
-        allowNull: true
+        type: DataTypes.STRING
+
         // validate: {
         //   notEmpty: true
         // }
       },
       lastName: {
-        type: DataTypes.STRING,
-        allowNull: true
+        type: DataTypes.STRING
+
         // validate: {
         //   notEmpty: true
         // }
       },
       email: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
         validate: {
           isEmail: true
@@ -31,10 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       mobilePhone: DataTypes.STRING,
       birthDate: DataTypes.DATE,
       address: DataTypes.STRING,
-      omiseId: {
-        type: DataTypes.INTEGER,
-        unique: true
-      }
+      isAdmin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      omiseId: DataTypes.STRING
     },
     {
       underscored: true
