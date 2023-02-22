@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+// const { sequelize } = require('./models');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -9,6 +10,8 @@ const errorMiddleware = require('./middlewares/error');
 
 const app = express();
 
+// sequelize.sync({ force: true });
+
 app.use(morgan('dev'));
 app.use(
   rateLimit({
@@ -17,6 +20,7 @@ app.use(
     message: { message: 'too many requests, please try again later' }
   })
 );
+
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
