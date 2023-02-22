@@ -5,8 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       skuProduct: DataTypes.STRING,
       color: DataTypes.STRING,
-      ProductImage: DataTypes.STRING,
-      typeProduct: DataTypes.ENUM('shoes', 'apparel')
+      ProductImage: DataTypes.STRING
     },
     {
       underscored: true
@@ -38,6 +37,16 @@ module.exports = (sequelize, DataTypes) => {
       db.ProductSize,
       {
         foreignKey: 'productId',
+        allowNull: false
+      },
+      {
+        onDelete: 'RESTRICT'
+      }
+    );
+    Product.hasMany(
+      db.Category,
+      {
+        foreignKey: 'categoryId',
         allowNull: false
       },
       {
