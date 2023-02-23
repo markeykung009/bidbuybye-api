@@ -4,6 +4,7 @@ const {
 } = require('../validators/auth-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const jwtDecode = require('jwt-decode');
 const { User } = require('../models');
 const createError = require('../utils/create-error');
 
@@ -76,20 +77,62 @@ exports.getMe = (req, res, next) => {
   res.status(200).json({ user: req.user });
 };
 
-exports.googleLogin = async (req, res) => {
-  const { credential } = req.body;
-  let g_user = jwtDecode(credential);
-  const user = await User.findOne({
-    where: {
-      email: g_user.email
-    }
-  });
-  let newuser;
-  if (!user) {
-    newuser = await User.create({
-      email: g_user.email,
-      phone: g_user.exp,
-      password: ''
+exports.googleLogin = async (req, res, next) => {
+  try {
+    let g_user = jwtDecode(req.body.token);
+
+    console.log(g_user);
+    const { email, fname, lname } = g_user;
+    const user = await User.findOne({
+      where: {
+        email: email
+      }
     });
+    console.log(user.email);
+    let newuser;
+    if (!user) {
+      newuser = await User.create({
+        email: email,
+        firstName: fname,
+        lastName: lname
+      });
+    }
+
+    // console.log(jwt.sign(user, 'secretkeyyy'));
+    const accessToken = jwt.sign(
+      {
+        id: user ? user.id : newuser.id,
+        name: user ? user.name : newuser.name,
+        email: user ? user.email : newuser.email,
+        profileImage: user ? user.profileImage : newuser.profileImage,
+        createdAt: user ? user.createdAt : newuser.createdAt,
+        updatedAt: user ? user.updatedAt : newuser.updatedAt
+      },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: process.env.JWT_EXPIRES_IN }
+    );
+    console.log(accessToken);
+    res.status(200).json({ accessToken });
+  } catch (err) {
+    next(err);
   }
 };
+
+// try {
+//   const { credential } = req.body;
+//   let g_user = jwtDecode(credential);
+//   console.log(credential);
+//   const user = await User.findOne({
+//     where: {
+//       email: g_user.email
+//     }
+//   });
+//   let newuser;
+//   if (!user) {
+//     newuser = await User.create({
+//       email: g_user.email,
+//       password: ''
+//     });
+//   }
+//   } catch (err) {
+//     next(err);
