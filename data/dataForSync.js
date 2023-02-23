@@ -2,7 +2,7 @@ const {
   User,
   Product,
   Brand,
-  Catergory,
+  Category,
   Size,
   Order,
   OrderStatus,
@@ -272,7 +272,7 @@ const brand = [
   { title: 'Kaws' }
 ];
 
-const catergory = [
+const category = [
   {
     typeProduct: 'Shoes'
   },
@@ -358,7 +358,7 @@ const seedData = async () => {
     const user_res = await User.bulkCreate(user);
     const product_res = await Product.bulkCreate(product);
     const brand_res = await Brand.bulkCreate(brand);
-    const catergory_res = await Catergory.bulkCreate(catergory);
+    const category_res = await Category.bulkCreate(category);
     const size_res = await Size.bulkCreate(size);
     const bid_res = await Bid.bulkCreate(bid);
     const order_res = await Order.bulkCreate(order);

@@ -1,19 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
   const Category = sequelize.define(
     'Category',
-    {
-      typeProduct: DataTypes.STRING
-    },
-    {
-      underscored: true
-    }
+    { typeProduct: DataTypes.STRING },
+    { underscored: true }
   );
 
   Category.associate = (db) => {
-    Category.belongsTo(
+    Category.hasMany(
       db.Product,
       {
-        foreignKey: 'catagoryId',
+        foreignKey: 'categoryId',
         allowNull: false
       },
       {
