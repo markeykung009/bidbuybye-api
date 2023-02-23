@@ -75,3 +75,21 @@ exports.login = async (req, res, next) => {
 exports.getMe = (req, res, next) => {
   res.status(200).json({ user: req.user });
 };
+
+exports.googleLogin = async (req, res) => {
+  const { credential } = req.body;
+  let g_user = jwtDecode(credential);
+  const user = await User.findOne({
+    where: {
+      email: g_user.email
+    }
+  });
+  let newuser;
+  if (!user) {
+    newuser = await User.create({
+      email: g_user.email,
+      phone: g_user.exp,
+      password: ''
+    });
+  }
+};
