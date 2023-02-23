@@ -8,6 +8,8 @@ const rateLimit = require('express-rate-limit');
 const notFoundMiddleware = require('./middlewares/notfound');
 const errorMiddleware = require('./middlewares/error');
 
+const productRoute = require('./routes/product-route');
+
 const app = express();
 
 // sequelize.sync({ force: true });
@@ -24,6 +26,8 @@ app.use(
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+
+app.use('/product', productRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
