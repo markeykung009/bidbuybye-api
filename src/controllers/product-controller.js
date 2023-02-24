@@ -6,7 +6,7 @@ const {
   ProductSize,
   Size
 } = require('../models');
-const Sequelize = require('Sequelize');
+const { fn, col } = require('sequelize');
 
 //  find product from id
 exports.getProductDetail = async (req, res, next) => {
@@ -28,21 +28,33 @@ exports.getProductDetail = async (req, res, next) => {
 
 exports.getPrice = async (req, res, next) => {
   try {
-    const asks = await ProductSize.findOne({
-      where: { productId: req.body.productId },
+    const asks = await Product.findOne({
+      attributes: ['id'],
+      where: { id: req.body.productId },
       include: [
         {
-          model: Bid,
-          where: {
-            type: 'SELLER',
-            isSold: false
+          model: ProductSize,
+          attributes: ['productId'],
+          include: {
+            model: Bid,
+            where: {
+              type: 'SELLER',
+              isSold: false
+            },
+            attributes: ['price']
           }
-        },
-        { model: Product }
+        }
       ]
     });
+    // let x = JSON.parse(JSON.stringify(asks.ProductSizes));
+    const allPrice = asks.ProductSizes.map((el) => {
+      return el.Bids.map((el) => {
+        return el.price;
+      });
+    }).flat();
 
-    res.status(200).json({ asks });
+    const minPrice = Math.min(...allPrice);
+    res.status(200).json({ minPrice });
   } catch (err) {
     next(err);
   }
