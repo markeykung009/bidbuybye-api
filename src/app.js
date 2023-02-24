@@ -12,6 +12,8 @@ const authenticate = require('./middlewares/authenticate');
 const checkoutRoutes = require('./routes/checkoutRoutes');
 const authRoute = require('./routes/auth-route');
 
+const productRoute = require('./routes/product-route');
+
 const app = express();
 
 // const { sequelize } = require('./models');
@@ -30,6 +32,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+app.use('/product', productRoute);
+app.use('/size', productRoute);
 // app.use('/checkout', authenticate, checkoutRoutes);
 app.use('/checkout', checkoutRoutes);
 app.use('/auth', authRoute);
