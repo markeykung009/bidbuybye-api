@@ -7,10 +7,12 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const notFoundMiddleware = require('./middlewares/notfound');
 const errorMiddleware = require('./middlewares/error');
+const authRoute = require('./routes/auth-route');
 
 const app = express();
 
-// sequelize.sync({ force: true });
+// const { sequelize } = require('./models');
+// sequelize.sync({ force: false });
 
 app.use(morgan('dev'));
 app.use(
@@ -24,6 +26,8 @@ app.use(
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+
+app.use('/auth', authRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
