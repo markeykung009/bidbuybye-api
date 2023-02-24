@@ -14,6 +14,10 @@ const authRoute = require('./routes/auth-route');
 
 const productRoute = require('./routes/product-route');
 
+const productRoute = require('./routes/productRoute');
+const categorytRoute = require('./routes/categoryRoute');
+const brandRoute = require('./routes/brandRoute');
+
 const app = express();
 
 // const { sequelize } = require('./models');
@@ -33,6 +37,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/product', productRoute);
+app.use('/category', categorytRoute);
+app.use('/brand', brandRoute);
 app.use('/size', productRoute);
 // app.use('/checkout', authenticate, checkoutRoutes);
 app.use('/checkout', checkoutRoutes);
