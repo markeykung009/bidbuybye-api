@@ -1,12 +1,15 @@
 require('dotenv').config();
 const express = require('express');
-// const { sequelize } = require('./models');
+// const { sequelize, Order, Bid } = require('./models');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const notFoundMiddleware = require('./middlewares/notfound');
 const errorMiddleware = require('./middlewares/error');
+const authenticate = require('./middlewares/authenticate');
+
+const checkoutRoutes = require('./routes/checkoutRoutes');
 const authRoute = require('./routes/auth-route');
 
 const app = express();
@@ -27,6 +30,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+// app.use('/checkout', authenticate, checkoutRoutes);
+app.use('/checkout', checkoutRoutes);
 app.use('/auth', authRoute);
 
 app.use(notFoundMiddleware);

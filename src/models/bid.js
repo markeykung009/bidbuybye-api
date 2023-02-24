@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Bid.associate = (db) => {
-    Bid.hasMany(
+    Bid.hasOne(
       db.Order,
       {
         foreignKey: 'bidId',
