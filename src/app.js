@@ -10,10 +10,12 @@ const errorMiddleware = require('./middlewares/error');
 const authenticate = require('./middlewares/authenticate');
 
 const checkoutRoutes = require('./routes/checkoutRoutes');
+const authRoute = require('./routes/auth-route');
 
 const app = express();
 
-// sequelize.sync({ force: true });
+// const { sequelize } = require('./models');
+// sequelize.sync({ force: false });
 
 app.use(morgan('dev'));
 app.use(
@@ -30,6 +32,7 @@ app.use(express.json());
 
 // app.use('/checkout', authenticate, checkoutRoutes);
 app.use('/checkout', checkoutRoutes);
+app.use('/auth', authRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
