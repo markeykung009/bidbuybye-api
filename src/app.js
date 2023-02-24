@@ -12,9 +12,7 @@ const authenticate = require('./middlewares/authenticate');
 const checkoutRoutes = require('./routes/checkoutRoutes');
 const authRoute = require('./routes/auth-route');
 
-// const productDetailRoute = require('./routes/product-route');
-
-const productRoute = require('./routes/productRoute');
+const productRoute = require('./routes/product-route');
 const categorytRoute = require('./routes/categoryRoute');
 const brandRoute = require('./routes/brandRoute');
 
