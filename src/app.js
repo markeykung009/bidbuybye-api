@@ -12,7 +12,7 @@ const authenticate = require('./middlewares/authenticate');
 const checkoutRoutes = require('./routes/checkoutRoutes');
 const authRoute = require('./routes/auth-route');
 
-const productRoute = require('./routes/product-route');
+const productDetailRoute = require('./routes/product-route');
 
 const productRoute = require('./routes/productRoute');
 const categorytRoute = require('./routes/categoryRoute');
@@ -36,10 +36,10 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-app.use('/product', productRoute);
+app.use('/product', productRoute, productDetailRoute);
 app.use('/category', categorytRoute);
 app.use('/brand', brandRoute);
-app.use('/size', productRoute);
+app.use('/size', productDetailRoute);
 // app.use('/checkout', authenticate, checkoutRoutes);
 app.use('/checkout', checkoutRoutes);
 app.use('/auth', authRoute);
@@ -49,5 +49,3 @@ app.use(errorMiddleware);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`server running on port: ${port}`));
-
-//ฝากลบเม้นนี้ด้วย
