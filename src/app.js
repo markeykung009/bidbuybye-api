@@ -28,6 +28,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/product', productRoute);
+app.use('/size', productRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
