@@ -81,22 +81,28 @@ exports.googleLogin = async (req, res, next) => {
   try {
     let g_user = jwtDecode(req.body.token);
 
-    console.log(g_user);
-    const { email, fname, lname } = g_user;
+    // console.log(g_user);
+    // const { email, fname, lname } = g_user;
+    const { email, name } = g_user;
     const user = await User.findOne({
       where: {
         email: email
       }
     });
-    console.log(user.email);
+
+    console.log('----------------g', g_user);
+    console.log('----------------gN', g_user.name);
+    // console.log(user?.fname);
+
     let newuser;
     if (!user) {
       newuser = await User.create({
         email: email,
-        firstName: fname,
-        lastName: lname
+        firstName: g_user.given_name,
+        lastName: g_user.family_name
       });
     }
+    console.log('--------------fn', newuser);
 
     // console.log(jwt.sign(user, 'secretkeyyy'));
     const accessToken = jwt.sign(
