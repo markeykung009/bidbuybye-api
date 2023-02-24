@@ -13,8 +13,6 @@ const checkoutRoutes = require('./routes/checkoutRoutes');
 const authRoute = require('./routes/auth-route');
 
 const productRoute = require('./routes/product-route');
-
-const productRoute = require('./routes/productRoute');
 const categorytRoute = require('./routes/categoryRoute');
 const brandRoute = require('./routes/brandRoute');
 
@@ -49,5 +47,3 @@ app.use(errorMiddleware);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`server running on port: ${port}`));
-
-//ฝากลบเม้นนี้ด้วย
