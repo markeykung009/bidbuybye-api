@@ -30,8 +30,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-// app.use('/checkout', authenticate, checkoutRoutes);
-app.use('/checkout', checkoutRoutes);
+app.use('/checkout', authenticate, checkoutRoutes);
+// app.use('/checkout', checkoutRoutes);
 app.use('/auth', authRoute);
 
 app.use(notFoundMiddleware);
