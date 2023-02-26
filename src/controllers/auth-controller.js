@@ -74,7 +74,11 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getMe = (req, res, next) => {
-  res.status(200).json({ user: req.user });
+  try {
+    res.status(200).json({ user: req.user });
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.googleLogin = async (req, res, next) => {
