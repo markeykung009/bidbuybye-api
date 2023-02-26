@@ -25,7 +25,7 @@ exports.checkoutCreditCard = async (req, res, next) => {
     const charge = await omise.charges.create({
       amount,
       currency: 'thb',
-      customer: customer.id
+      user: customer.id
     });
     // console.log('charge --->', charge);
     res.send({
@@ -50,8 +50,7 @@ exports.getAllOrder = async (req, res, next) => {
         },
         {
           model: Product,
-          include: { model: Brand },
-          include: { model: Category }
+          include: [{ model: Brand }, { model: Category }]
         }
       ]
     });
