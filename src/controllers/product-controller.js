@@ -41,7 +41,7 @@ exports.getPrice = async (req, res, next) => {
   try {
     const asks = await Product.findOne({
       attributes: ['id'],
-      where: { id: req.body.productId },
+      where: { id: req.params.id },
       include: [
         {
           model: ProductSize,
