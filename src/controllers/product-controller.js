@@ -99,8 +99,10 @@ exports.getPriceBid = async (req, res, next) => {
       });
     }).flat();
 
-    const minPrice = Math.max(...allPrice);
-    res.status(200).json({ minPrice });
+    const maxPrice = Math.max(...allPrice);
+    const minBidPrice = Math.min(...allPrice);
+
+    res.status(200).json({ maxPrice, minBidPrice });
   } catch (err) {
     next(err);
   }
