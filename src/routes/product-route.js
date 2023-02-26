@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.get('/getProduct', ProductController.getProduct);
 router.get('/:id', ProductController.getProductDetail);
-router.get('/price/:id', ProductController.getPrice);
+router.get('/priceAsk/:id', ProductController.getPriceAsk);
+router.get('/priceBid/:id', ProductController.getPriceBid);
 router.get('/', ProductController.getAllSize);
 
 module.exports = router;

@@ -37,7 +37,7 @@ exports.getProductDetail = async (req, res, next) => {
   }
 };
 
-exports.getPrice = async (req, res, next) => {
+exports.getPriceAsk = async (req, res, next) => {
   try {
     const asks = await Product.findOne({
       attributes: ['id'],
@@ -65,6 +65,41 @@ exports.getPrice = async (req, res, next) => {
     }).flat();
 
     const minPrice = Math.min(...allPrice);
+    res.status(200).json({ minPrice });
+  } catch (err) {
+    next(err);
+  }
+};
+
+//get Price Bid
+exports.getPriceBid = async (req, res, next) => {
+  try {
+    const asks = await Product.findOne({
+      attributes: ['id'],
+      where: { id: req.params.id },
+      include: [
+        {
+          model: ProductSize,
+          attributes: ['productId'],
+          include: {
+            model: Bid,
+            where: {
+              type: 'BUYER',
+              isSold: false
+            },
+            attributes: ['price']
+          }
+        }
+      ]
+    });
+    // let x = JSON.parse(JSON.stringify(asks.ProductSizes));
+    const allPrice = asks.ProductSizes.map((el) => {
+      return el.Bids.map((el) => {
+        return el.price;
+      });
+    }).flat();
+
+    const minPrice = Math.max(...allPrice);
     res.status(200).json({ minPrice });
   } catch (err) {
     next(err);
