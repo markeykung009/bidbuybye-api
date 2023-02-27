@@ -73,21 +73,27 @@ exports.login = async (req, res, next) => {
   }
 };
 
-exports.getMe = (req, res, next) => {
-  try {
-    res.status(200).json({ user: req.user });
-  } catch (err) {
-    next(err);
-  }
-};
+// const verifyToken = async (token) => {
+//   console.log('Verify Token...');
+//   let res = await axios.get(
+//     'https://oauth2.googleapis.com/tokeninfo?id_token=' + token,
+//     {
+//       validateStatus: function (status) {
+//         return status < 500;
+//       }
+//     }
+//   );
+//   return !!res.data.iss;
+// };
 
 exports.googleLogin = async (req, res, next) => {
   try {
-    let g_user = jwtDecode(req.body.token);
+    // const { credential } = req.body;
+    // let token_ok = await verifyToken(credential);
+    // if (!token_ok) createError('invalid google token', 400);
 
-    // console.log(g_user);
-    // const { email, fname, lname } = g_user;
-    const { email, name } = g_user;
+    let g_user = jwtDecode(req.body.token);
+    const { email, given_name, family_name } = g_user;
     const user = await User.findOne({
       where: {
         email: email
@@ -95,15 +101,15 @@ exports.googleLogin = async (req, res, next) => {
     });
 
     console.log('----------------g', g_user);
-    console.log('----------------gN', g_user.name);
+    console.log('----------------fami', family_name);
     // console.log(user?.fname);
 
     let newuser;
     if (!user) {
       newuser = await User.create({
         email: email,
-        firstName: g_user.given_name,
-        lastName: g_user.family_name
+        firstName: given_name,
+        lastName: family_name
       });
     }
     console.log('--------------fn', newuser);
@@ -146,3 +152,11 @@ exports.googleLogin = async (req, res, next) => {
 //   }
 //   } catch (err) {
 //     next(err);
+
+exports.getMe = (req, res, next) => {
+  try {
+    res.status(200).json({ user: req.user });
+  } catch (err) {
+    next(err);
+  }
+};
