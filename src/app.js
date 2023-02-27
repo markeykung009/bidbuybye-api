@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-// const { sequelize, Order, Bid } = require('./models');
+// const { sequelize } = require('./models');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -11,7 +11,7 @@ const authenticate = require('./middlewares/authenticate');
 
 const checkoutRoutes = require('./routes/checkoutRoutes');
 const authRoute = require('./routes/auth-route');
-
+const userRoute = require('./routes/user-route');
 const productRoute = require('./routes/product-route');
 const categorytRoute = require('./routes/categoryRoute');
 const brandRoute = require('./routes/brandRoute');
@@ -41,6 +41,7 @@ app.use('/size', productRoute);
 // app.use('/checkout', authenticate, checkoutRoutes);
 app.use('/checkout', checkoutRoutes);
 app.use('/auth', authRoute);
+app.use('/users', userRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
