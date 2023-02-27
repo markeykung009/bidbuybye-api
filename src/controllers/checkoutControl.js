@@ -38,7 +38,7 @@ exports.checkoutCreditCard = async (req, res, next) => {
     console.log(error);
   }
 
-  next();
+  // next();
 };
 
 exports.getAllOrder = async (req, res, next) => {
