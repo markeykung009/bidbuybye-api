@@ -6,5 +6,6 @@ const authenticate = require('../middlewares/authenticate');
 const router = express.Router();
 
 router.post('/', authenticate, BidController.postBid);
+router.get('/priceBySize', BidController.getPriceBySize);
 
 module.exports = router;
