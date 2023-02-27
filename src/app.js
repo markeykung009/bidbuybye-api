@@ -43,7 +43,7 @@ app.use('/bid', bidRoute);
 // app.use('/checkout', authenticate, checkoutRoutes);
 app.use('/checkout', checkoutRoutes);
 app.use('/auth', authRoute);
-app.use('/users', userRoute);
+// app.use('/users', userRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
