@@ -12,7 +12,7 @@ const {
 exports.getPriceBySize = async (req, res, next) => {
   try {
     const getProductSize = await ProductSize.findOne({
-      where: { sizeId: req.body.sizeId, productId: req.body.productId }
+      where: { sizeId: req.params.sizeId, productId: req.params.productId }
     });
 
     const getMinPriceBid = await Bid.findAll({
