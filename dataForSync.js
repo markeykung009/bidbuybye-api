@@ -8,7 +8,7 @@ const {
   OrderStatus,
   Bid,
   sequelize
-} = require('../src/models');
+} = require('./src/models');
 const bcrypt = require('bcryptjs');
 
 const user = [
