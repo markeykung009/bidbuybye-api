@@ -1,12 +1,15 @@
-// const express = require('express');
-// const userController = require('../controllers/user-controller');
-// const authenticate = require('../middlewares/authenticate');
+const express = require('express');
+const router = express.Router();
+const upload = require('../middlewares/upload');
 
-// router.patch(
-//   '/',
-//   authenticate,
-//   upload.single('profileImage'),
-//   userController.updateProfileImage
-// );
+const userController = require('../controllers/user-controller');
+const authenticate = require('../middlewares/authenticate');
 
-// module.exports = router;
+router.patch(
+  '/',
+  authenticate,
+  upload.single('profilePicture'),
+  userController.updateProfilePicture
+);
+
+module.exports = router;

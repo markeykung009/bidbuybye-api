@@ -35,15 +35,16 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+app.use('/checkout', authenticate, checkoutRoutes);
+// app.use('/checkout', checkoutRoutes);
 app.use('/product', productRoute);
 app.use('/category', categorytRoute);
 app.use('/brand', brandRoute);
 app.use('/size', productRoute);
 app.use('/bid', bidRoute);
-// app.use('/checkout', authenticate, checkoutRoutes);
-app.use('/checkout', checkoutRoutes);
+
 app.use('/auth', authRoute);
-// app.use('/users', userRoute);
+app.use('/user', userRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
