@@ -50,9 +50,11 @@ exports.postBid = async (req, res, next) => {
       price: req.body.price,
       type: req.body.type,
       userId: req.user.id,
-      ProductSizeId: getProductSizeId.id
+      productSizeId: getProductSizeId.id,
+      equipment: req.body.equipment
     });
-    res.status(204).json({ createBid });
+    console.log(getProductSizeId);
+    res.status(201).json({ createBid });
   } catch (err) {
     next(err);
   }
