@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     Order.belongsTo(
       db.Bid,
       {
-        foreignKey: 'orderId',
+        foreignKey: 'bidId',
         allowNull: false
       },
       {
