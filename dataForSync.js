@@ -268,8 +268,7 @@ const brand = [
   { title: 'New Balance' },
   { title: 'Stussy' },
   { title: 'Carnival' },
-  { title: 'CarnAnti Social Social Clubival' },
-  { title: 'Kaws' }
+  { title: 'CarnAnti Social Social Clubival' }
 ];
 
 const category = [

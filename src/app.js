@@ -20,7 +20,7 @@ const bidRoute = require('./routes/bid-route');
 const app = express();
 
 // const { sequelize } = require('./models');
-// sequelize.sync({ force: false });
+// sequelize.sync({ force: true });
 
 app.use(morgan('dev'));
 app.use(
@@ -47,7 +47,7 @@ app.use('/size', productRoute);
 app.use('/bid', bidRoute);
 
 app.use('/auth', authRoute);
-// app.use('/users', userRoute);
+app.use('/user', userRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
