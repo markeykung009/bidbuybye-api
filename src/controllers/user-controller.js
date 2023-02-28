@@ -15,7 +15,7 @@ exports.updateProfilePicture = async (req, res, next) => {
     const profilePicture = await cloudinary.upload(
       req.file.path,
       req.user.profilePicture
-        ? cloudinary.getPublicId(req.user.profilePicture)
+        ? cloudinary.getPubilcId(req.user.profilePicture)
         : null
     );
 
@@ -28,7 +28,6 @@ exports.updateProfilePicture = async (req, res, next) => {
     console.log('********');
 
     if (User && req.user.dataValues.id) {
-      // check if User object and id is defined
       await User.update(value, {
         where: { id: req.user.dataValues.id }
       });
@@ -40,14 +39,26 @@ exports.updateProfilePicture = async (req, res, next) => {
     //   where: { id: req.user.dataValues.id }
     // });
     // res.status(200).json(value);
-    // value = url profileImage
-    // "profileImage": "https://res.cloudinary.com/dhgny94kc/image/upload/v1675919318/1675915242378428504823.jpg"
+    // value = url profilePicture
+    // "profilePicture": "https://res.cloudinary.com/dhgny94kc/image/upload/v1675919318/1675915242378428504823.jpg"
   } catch (err) {
     next(err);
   } finally {
     if (req.file) {
       fs.unlinkSync(req.file.path);
-      // delete file
     }
+  }
+};
+
+exports.updateUserInfo = async (req, res, next) => {
+  try {
+    const value = req.body;
+    console.log('-----------------------------> ', req.body);
+    await User.update(value, {
+      where: { id: req.user.dataValues.id }
+    });
+    res.status(200).json(value);
+  } catch (err) {
+    next(err);
   }
 };

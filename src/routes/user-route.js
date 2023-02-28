@@ -12,4 +12,6 @@ router.patch(
   userController.updateProfilePicture
 );
 
+router.patch('/info', authenticate, userController.updateUserInfo);
+
 module.exports = router;
