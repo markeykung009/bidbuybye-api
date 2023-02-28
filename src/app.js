@@ -44,7 +44,7 @@ app.use('/size', productRoute);
 app.use('/bid', bidRoute);
 
 app.use('/auth', authRoute);
-// app.use('/users', userRoute);
+app.use('/user', userRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
