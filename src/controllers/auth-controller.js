@@ -59,7 +59,7 @@ exports.login = async (req, res, next) => {
         id: user.id,
         name: user.name,
         email: user.email,
-        profileImage: user.profileImage,
+        profilePicture: user.profilePicture,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt
       },
@@ -120,7 +120,7 @@ exports.googleLogin = async (req, res, next) => {
         id: user ? user.id : newuser.id,
         name: user ? user.name : newuser.name,
         email: user ? user.email : newuser.email,
-        profileImage: user ? user.profileImage : newuser.profileImage,
+        profilePicture: user ? user.profilePicture : newuser.profilePicture,
         createdAt: user ? user.createdAt : newuser.createdAt,
         updatedAt: user ? user.updatedAt : newuser.updatedAt
       },

@@ -1,10 +1,10 @@
-const cloudinary = require("../config/cloudinary");
+const cloudinary = require('../config/cloudinary');
 
 exports.upload = async (filePath, publicId) => {
   const option = {
     unique_filename: false,
     use_filename: true,
-    overwrite: true,
+    overwrite: true
   };
 
   if (publicId) {
@@ -15,8 +15,8 @@ exports.upload = async (filePath, publicId) => {
   return result.secure_url;
 };
 
-exports.getPubilcId = url => {
-  console.log(url);
-  const splitSlash = url.split("/");
-  return splitSlash[splitSlash.length - 1].split(".")[0];
+exports.getPubilcId = (url) => {
+  console.log(url, 'urllllll*******');
+  const splitSlash = url.split('/');
+  return splitSlash[splitSlash.length - 1].split('.')[0];
 };
