@@ -8,7 +8,7 @@ const {
   OrderStatus,
   Bid,
   sequelize
-} = require('../src/models');
+} = require('./src/models');
 const bcrypt = require('bcryptjs');
 
 const user = [
@@ -268,8 +268,7 @@ const brand = [
   { title: 'New Balance' },
   { title: 'Stussy' },
   { title: 'Carnival' },
-  { title: 'CarnAnti Social Social Clubival' },
-  { title: 'Kaws' }
+  { title: 'CarnAnti Social Social Clubival' }
 ];
 
 const category = [

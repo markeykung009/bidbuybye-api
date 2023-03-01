@@ -5,7 +5,8 @@ const {
   Size,
   Product,
   Brand,
-  Category
+  Category,
+  User
 } = require('../models');
 
 const omise = require('omise')({
@@ -15,34 +16,36 @@ const omise = require('omise')({
 
 exports.checkoutCreditCard = async (req, res, next) => {
   const { email, name, amount, token } = req.body;
-  // console.log('credit');
+
   try {
     const customer = await omise.customers.create({
       email,
       description: name,
       card: token
     });
+
     const charge = await omise.charges.create({
       amount,
       currency: 'thb',
       customer: customer.id
     });
-    // console.log('charge --->', charge);
+
     res.send({
       amount: charge.amount,
       status: charge.status
     });
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
-  next();
+
+  // next();
 };
 
 exports.getAllOrder = async (req, res, next) => {
   try {
     // console.log(req.user.id);
     const orderSummary = await Order.findAll({
-      // where: { userId: req.user.id },
+      where: { userId: req.user.id },
       include: [
         {
           model: Bid,
@@ -50,9 +53,9 @@ exports.getAllOrder = async (req, res, next) => {
         },
         {
           model: Product,
-          include: { model: Brand },
-          include: { model: Category }
-        }
+          include: [{ model: Brand }, { model: Category }]
+        },
+        { model: User }
       ]
     });
     console.log('orderSummary');
