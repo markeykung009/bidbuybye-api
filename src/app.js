@@ -20,7 +20,7 @@ const bidRoute = require('./routes/bid-route');
 const app = express();
 
 // const { sequelize } = require('./models');
-// sequelize.sync({ force: false });
+// sequelize.sync({ alter: true });
 
 app.use(morgan('dev'));
 app.use(
