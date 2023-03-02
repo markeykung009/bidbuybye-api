@@ -108,14 +108,14 @@ exports.postBid = async (req, res, next) => {
   }
 };
 
-exports.preCheckout = async (req, res, next) => {
+exports.bidStatus = async (req, res, nect) => {
   try {
-    const checkoutDetail = await Bid.fineOne({
+    const getBids = await Bid.findAll({
       where: {
         userId: req.user.id
       }
     });
-    res.status(200).json({ checkoutDetail });
+    res.status(201).json({ getBids });
   } catch (err) {
     next(err);
   }
