@@ -16,6 +16,7 @@ const productRoute = require('./routes/product-route');
 const categorytRoute = require('./routes/categoryRoute');
 const brandRoute = require('./routes/brandRoute');
 const bidRoute = require('./routes/bid-route');
+const { sentLinenoti } = require('./service/linenoti-service');
 
 const app = express();
 
@@ -45,6 +46,8 @@ app.use('/brand', brandRoute);
 app.use('/checkout', checkoutRoutes);
 app.use('/size', productRoute);
 app.use('/bid', bidRoute);
+
+app.use('/linenotify', sentLinenoti);
 
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
