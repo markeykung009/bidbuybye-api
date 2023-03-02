@@ -113,7 +113,13 @@ exports.bidStatus = async (req, res, nect) => {
     const getBids = await Bid.findAll({
       where: {
         userId: req.user.id
-      }
+      },
+      include: [
+        {
+          model: ProductSize,
+          include: [{ model: Product }, { model: Size }]
+        }
+      ]
     });
     res.status(201).json({ getBids });
   } catch (err) {
