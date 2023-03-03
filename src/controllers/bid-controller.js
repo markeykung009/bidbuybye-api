@@ -1,11 +1,4 @@
-const {
-  Product,
-  Brand,
-  Category,
-  Bid,
-  ProductSize,
-  Size
-} = require('../models');
+const { Product, Bid, ProductSize, Size } = require('../models');
 
 //get price for buy at buyer selected size
 
@@ -108,7 +101,7 @@ exports.postBid = async (req, res, next) => {
   }
 };
 
-exports.bidStatus = async (req, res, nect) => {
+exports.getAllBids = async (req, res, next) => {
   try {
     const getBids = await Bid.findAll({
       where: {
