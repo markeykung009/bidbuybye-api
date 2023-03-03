@@ -36,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       },
-      omiseId: DataTypes.STRING
+      omiseId: DataTypes.STRING,
+      lineToken: DataTypes.STRING
     },
     {
       underscored: true

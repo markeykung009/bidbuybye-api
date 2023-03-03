@@ -15,23 +15,71 @@ exports.getPriceBySize = async (req, res, next) => {
       where: { sizeId: req.params.sizeId, productId: req.params.productId }
     });
 
-    const getMinPriceBid = await Bid.findAll({
+    const getMinPriceAsk = await Bid.findAll({
+      where: {
+        productSizeId: getProductSize.id,
+        type: 'SELLER',
+        isSold: false
+      },
+      include: [
+        {
+          model: ProductSize,
+          include: [{ model: Product }, { model: Size }]
+        }
+      ]
+    });
+
+    const allPriceBysize = getMinPriceAsk
+      .map((el) => {
+        return {
+          bidId: el.id,
+          minPrice: el.price,
+          product: el.ProductSize.Product.ProductImage,
+          size: el.ProductSize.Size.sizeProduct
+        };
+      })
+      .flat();
+    // const minAskPrice = Math.min(...allPriceBysize.map((i) => i.minPrice));
+    allPriceBysize.sort((a, b) => a.minPrice - b.minPrice);
+
+    res.status(200).json(allPriceBysize[0]);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getPriceMaxBySize = async (req, res, next) => {
+  try {
+    const getProductSize = await ProductSize.findOne({
+      where: { sizeId: req.params.sizeId, productId: req.params.productId }
+    });
+
+    const getMaxPriceBid = await Bid.findAll({
       where: {
         productSizeId: getProductSize.id,
         type: 'BUYER',
         isSold: false
       },
-      attributes: ['price']
+      include: [
+        {
+          model: ProductSize,
+          include: [{ model: Product }, { model: Size }]
+        }
+      ]
     });
-
-    const allPriceBysize = getMinPriceBid
+    const allPriceBysize = getMaxPriceBid
       .map((el) => {
-        return el.price;
+        return {
+          bidId: el.id,
+          maxPrice: el.price,
+          product: el.ProductSize.Product.ProductImage,
+          size: el.ProductSize.Size.sizeProduct
+        };
       })
       .flat();
+    allPriceBysize.sort((a, b) => b.maxPrice - a.maxPrice);
 
-    const minAskPrice = Math.min(...allPriceBysize);
-    res.status(200).json({ minAskPrice });
+    res.status(200).json(allPriceBysize[0]);
   } catch (err) {
     next(err);
   }
@@ -50,9 +98,24 @@ exports.postBid = async (req, res, next) => {
       price: req.body.price,
       type: req.body.type,
       userId: req.user.id,
-      ProductSizeId: getProductSizeId.id
+      productSizeId: getProductSizeId.id,
+      equipment: req.body.equipment
     });
-    res.status(204).json({ createBid });
+    // console.log(getProductSizeId);
+    res.status(201).json({ createBid });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.preCheckout = async (req, res, next) => {
+  try {
+    const checkoutDetail = await Bid.fineOne({
+      where: {
+        userId: req.user.id
+      }
+    });
+    res.status(200).json({ checkoutDetail });
   } catch (err) {
     next(err);
   }

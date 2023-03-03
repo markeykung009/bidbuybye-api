@@ -26,6 +26,9 @@ const profileSchema = Joi.object({
   }),
   address: Joi.string().required().messages({
     'string.empty': 'address is required'
+  }),
+  lineToken: Joi.string().required().messages({
+    'string.empty': 'lineToken is required'
   })
 });
 
