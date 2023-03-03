@@ -124,13 +124,16 @@ exports.getAllBids = async (req, res, next) => {
 
 exports.deleteBid = async (req, res, next) => {
   try {
-    const cancelBid = await Bid.destroy({
+    const cancelBid = await Bid.findOne({
       where: {
         userId: req.user.id,
-        id: req.body.id
+        id: req.params.id
       }
     });
-    res.status(204).json({ cancelBid });
+    await cancelBid.update({
+      expiredDate: req.body.expiredDate
+    });
+    res.status(200).json({ cancelBid });
   } catch (err) {
     next(err);
   }
