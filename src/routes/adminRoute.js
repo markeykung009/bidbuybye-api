@@ -1,10 +1,9 @@
 const express = require('express');
 
-const authAdminController = require('../controllers/authAdminController');
+const AdminController = require('../controllers/AdminController');
 
 const router = express.Router();
 
-router.post('/', authAdminController.login);
-router.get('/adminOrder', authAdminController.adminOrder);
+router.get('/adminOrder', AdminController.adminOrder);
 
 module.exports = router;
