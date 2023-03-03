@@ -12,6 +12,6 @@ router.get(
   '/priceMaxBySize/:productId/:sizeId',
   BidController.getPriceMaxBySize
 );
-router.get('/checkout', BidController.preCheckout);
+router.get('/bidask', authenticate, BidController.getAllBids);
 
 module.exports = router;
