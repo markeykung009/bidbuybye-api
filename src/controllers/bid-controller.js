@@ -105,7 +105,9 @@ exports.getAllBids = async (req, res, next) => {
   try {
     const getBids = await Bid.findAll({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        expiredDate: false,
+        isSold: false
       },
       include: [
         {
@@ -114,7 +116,21 @@ exports.getAllBids = async (req, res, next) => {
         }
       ]
     });
-    res.status(201).json({ getBids });
+    res.status(200).json({ getBids });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deleteBid = async (req, res, next) => {
+  try {
+    const cancelBid = await Bid.destroy({
+      where: {
+        userId: req.user.id,
+        id: req.body.id
+      }
+    });
+    res.status(200).json({ cancelBid });
   } catch (err) {
     next(err);
   }
