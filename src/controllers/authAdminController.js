@@ -59,14 +59,15 @@ exports.adminOrder = async (req, res, next) => {
       include: [
         {
           model: Bid,
-          include: { model: ProductSize, include: { model: Size } }
+          include: { model: ProductSize }
         },
         {
           model: Product,
           include: [{ model: Brand }, { model: Category }]
         },
         { model: User },
-        { model: OrderStatus }
+        { model: OrderStatus },
+        { model: Size }
       ]
     });
     console.log('adminOrder');
