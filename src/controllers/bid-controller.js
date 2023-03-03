@@ -127,7 +127,7 @@ exports.deleteBid = async (req, res, next) => {
     const cancelBid = await Bid.findOne({
       where: {
         userId: req.user.id,
-        id: req.params.id
+        id: req.body.id
       }
     });
     await cancelBid.update({

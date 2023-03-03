@@ -14,6 +14,6 @@ router.get(
 );
 router.get('/bidask', authenticate, BidController.getAllBids);
 
-router.put('/deleteBid/:id', authenticate, BidController.deleteBid);
+router.put('/deleteBid', authenticate, BidController.deleteBid);
 
 module.exports = router;
