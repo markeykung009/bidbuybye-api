@@ -1,7 +1,8 @@
 const fs = require('fs');
-const { User } = require('../models');
+const { User, Order, Bid, ProductSize, Product, Size } = require('../models');
 const cloudinary = require('../utils/cloudinary');
 
+//update profile picture
 exports.updateProfilePicture = async (req, res, next) => {
   try {
     let value;
@@ -10,7 +11,6 @@ exports.updateProfilePicture = async (req, res, next) => {
     }
     console.log('------------------------req file', req.file);
 
-    // upload (filepath, publicId)
     const profilePicture = await cloudinary.upload(
       req.file.path,
       req.user.profilePicture
@@ -30,8 +30,6 @@ exports.updateProfilePicture = async (req, res, next) => {
       where: { id: req.user.dataValues.id }
     });
     res.status(200).json(value);
-    // value = url profilePicture
-    // "profilePicture": "https://res.cloudinary.com/dhgny94kc/image/upload/v1675919318/1675915242378428504823.jpg"
   } catch (err) {
     next(err);
   } finally {
@@ -41,6 +39,7 @@ exports.updateProfilePicture = async (req, res, next) => {
   }
 };
 
+// update user profile
 exports.updateUserInfo = async (req, res, next) => {
   try {
     const value = req.body;
@@ -49,6 +48,65 @@ exports.updateUserInfo = async (req, res, next) => {
       where: { id: req.user.dataValues.id }
     });
     res.status(200).json(value);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// find order history from user id
+// exports.userHistory = async (req, res, next) => {
+//   try {
+//     const history = await User.findOne({
+//       where: { id: req.user.dataValues.id },
+//       include: [
+//         {
+//           model: Order,
+//           include: {
+//             model: Bid,
+//             attributes: ['equipment', 'type', 'price', 'product_size_id'],
+//             include: {
+//               model: Product,
+//               attributes: ['title', 'product_image']
+//             }
+//           },
+//           include: {
+//             model: Size,
+//             attributes: ['size_product']
+//           }
+//         }
+//       ]
+//     });
+
+//     res.status(200).json({ history });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+exports.userHistory = async (req, res, next) => {
+  try {
+    const history = await User.findOne({
+      where: { id: req.user.dataValues.id },
+      attributes: ['first_name', 'last_name'],
+      include: [
+        {
+          model: Order,
+          attributes: ['transaction_id'],
+          include: [
+            {
+              model: Bid,
+              attributes: ['equipment', 'type', 'price', 'product_size_id']
+            },
+            {
+              model: Size,
+              attributes: ['size_product']
+            },
+            { model: Product, attributes: ['title', 'product_image'] }
+          ]
+        }
+      ]
+    });
+
+    res.status(200).json({ history });
   } catch (err) {
     next(err);
   }
