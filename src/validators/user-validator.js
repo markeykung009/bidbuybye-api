@@ -12,7 +12,8 @@ const profileSchema = Joi.object({
   birthDate: Joi.date().required().messages({
     'string.empty': 'birthday is required',
     'any.required': 'birthday is required',
-    'date.base': 'birthday must be a valid date'
+    'date.base': 'Invalid date format. Please use YYYY-MM-DD',
+    'any.invalid': 'Invalid date format. Please use YYYY-MM-DD'
   }),
   email: Joi.string().email({ tlds: false }).required().messages({
     'string.empty': 'email is required',
@@ -25,6 +26,9 @@ const profileSchema = Joi.object({
   }),
   address: Joi.string().required().messages({
     'string.empty': 'address is required'
+  }),
+  lineToken: Joi.string().required().messages({
+    'string.empty': 'lineToken is required'
   })
 });
 
