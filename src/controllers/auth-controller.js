@@ -57,8 +57,12 @@ exports.login = async (req, res, next) => {
     const accessToken = jwt.sign(
       {
         id: user.id,
-        name: user.name,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
+        mobilePhone: user.mobilePhone,
+        birthDate: user.birthDate,
+        address: user.address,
         profilePicture: user.profilePicture,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt
@@ -118,8 +122,12 @@ exports.googleLogin = async (req, res, next) => {
     const accessToken = jwt.sign(
       {
         id: user ? user.id : newuser.id,
-        name: user ? user.name : newuser.name,
+        firstName: user ? user.firstName : newuser.firstName,
+        lastName: user ? user.lastName : newuser.lastName,
         email: user ? user.email : newuser.email,
+        mobilePhone: user ? user.mobilePhone : newuser.mobilePhone,
+        birthDate: user ? user.birthDate : newuser.birthDate,
+        address: user ? user.address : newuser.address,
         profilePicture: user ? user.profilePicture : newuser.profilePicture,
         createdAt: user ? user.createdAt : newuser.createdAt,
         updatedAt: user ? user.updatedAt : newuser.updatedAt
@@ -155,6 +163,7 @@ exports.googleLogin = async (req, res, next) => {
 
 exports.getMe = (req, res, next) => {
   try {
+    console.log(res.user);
     res.status(200).json({ user: req.user });
   } catch (err) {
     next(err);
