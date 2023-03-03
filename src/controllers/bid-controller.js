@@ -130,7 +130,7 @@ exports.deleteBid = async (req, res, next) => {
         id: req.body.id
       }
     });
-    res.status(200).json({ cancelBid });
+    res.status(204).json({ cancelBid });
   } catch (err) {
     next(err);
   }
