@@ -14,4 +14,6 @@ router.patch(
 
 router.patch('/info', authenticate, userController.updateUserInfo);
 
+router.get('/history', authenticate, userController.userHistory);
+
 module.exports = router;
