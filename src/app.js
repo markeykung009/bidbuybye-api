@@ -16,12 +16,14 @@ const productRoute = require('./routes/product-route');
 const categorytRoute = require('./routes/categoryRoute');
 const brandRoute = require('./routes/brandRoute');
 const bidRoute = require('./routes/bid-route');
-const { sentLinenoti } = require('./service/linenoti-service');
+const { sendLinenoti } = require('./service/linenoti-service');
+const adminRoute = require('./routes/adminRoute');
 
 const app = express();
 
 // const { sequelize } = require('./models');
 // sequelize.sync({ force: true });
+// sequelize.sync({ alter: true });
 
 app.use(morgan('dev'));
 app.use(
@@ -47,10 +49,14 @@ app.use('/checkout', checkoutRoutes);
 app.use('/size', productRoute);
 app.use('/bid', bidRoute);
 
-app.use('/linenotify', sentLinenoti);
+app.use('/linenotify', (req, res, next) => {
+  sendLinenoti(3);
+  next();
+});
 
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
+app.use('/admin', authenticate, adminRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
