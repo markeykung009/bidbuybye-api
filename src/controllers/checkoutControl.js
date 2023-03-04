@@ -8,6 +8,7 @@ const {
   Category,
   User
 } = require('../models');
+const { v4: uuidv4 } = require('uuid');
 
 const omise = require('omise')({
   publicKey: process.env.OMISE_PUBLIC_KEY,
@@ -41,6 +42,31 @@ exports.checkoutCreditCard = async (req, res, next) => {
   // next();
 };
 
+exports.createOrder = async (req, res, next) => {
+  try {
+    const { userId, productId, bidId } = req.body;
+    const transactionId = uuidv4();
+    const getProductSizeId = await ProductSize.findOne({
+      where: {
+        productId: productId
+      },
+      include: { model: Size }
+    });
+    console.log(getProductSizeId);
+    await Order.create({
+      userId,
+      productId,
+      transactionId,
+      bidId,
+      sizeId: getProductSizeId.Size.id
+    });
+    res.status(201).send('Order created successfully');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error creating order');
+  }
+};
+
 exports.getAllOrder = async (req, res, next) => {
   try {
     // console.log(req.user.id);
@@ -58,7 +84,6 @@ exports.getAllOrder = async (req, res, next) => {
         { model: User }
       ]
     });
-    console.log('orderSummary');
 
     res.status(200).json(orderSummary);
   } catch (err) {
