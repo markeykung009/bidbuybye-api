@@ -1,11 +1,4 @@
-const {
-  Product,
-  Brand,
-  Category,
-  Bid,
-  ProductSize,
-  Size
-} = require('../models');
+const { Product, Bid, ProductSize, Size } = require('../models');
 
 //get price for buy at buyer selected size
 
@@ -108,14 +101,39 @@ exports.postBid = async (req, res, next) => {
   }
 };
 
-exports.preCheckout = async (req, res, next) => {
+exports.getAllBids = async (req, res, next) => {
   try {
-    const checkoutDetail = await Bid.fineOne({
+    const getBids = await Bid.findAll({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        expiredDate: false,
+        isSold: false
+      },
+      include: [
+        {
+          model: ProductSize,
+          include: [{ model: Product }, { model: Size }]
+        }
+      ]
+    });
+    res.status(200).json({ getBids });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deleteBid = async (req, res, next) => {
+  try {
+    const cancelBid = await Bid.findOne({
+      where: {
+        userId: req.user.id,
+        id: req.body.id
       }
     });
-    res.status(200).json({ checkoutDetail });
+    await cancelBid.update({
+      expiredDate: req.body.expiredDate
+    });
+    res.status(200).json({ cancelBid });
   } catch (err) {
     next(err);
   }

@@ -3,7 +3,10 @@ module.exports = (sequelize, DataTypes) => {
     'Bid',
     {
       price: DataTypes.DECIMAL(10, 2),
-      expiredDate: DataTypes.ENUM('7DAYS', '14DAYS', '30DAYS'),
+      expiredDate: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
       equipment: DataTypes.BOOLEAN,
       type: DataTypes.ENUM('BUYER', 'SELLER'),
       isSold: {
