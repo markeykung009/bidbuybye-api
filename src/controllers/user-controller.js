@@ -7,8 +7,10 @@ exports.updateProfilePicture = async (req, res, next) => {
   try {
     let value;
     if (!req.file) {
+      value = { profilePicture: req.user.profilePicture };
       res.status(200).json({ message: 'No file uploaded' });
     }
+    console.log(value, 'value old pic^^^^^^^^^^^^^');
     console.log('------------------------req file', req.file);
 
     const profilePicture = await cloudinary.upload(
@@ -29,6 +31,7 @@ exports.updateProfilePicture = async (req, res, next) => {
     await User.update(value, {
       where: { id: req.user.dataValues.id }
     });
+
     res.status(200).json(value);
   } catch (err) {
     next(err);
@@ -53,35 +56,6 @@ exports.updateUserInfo = async (req, res, next) => {
   }
 };
 
-// find order history from user id
-// exports.userHistory = async (req, res, next) => {
-//   try {
-//     const history = await User.findOne({
-//       where: { id: req.user.dataValues.id },
-//       include: [
-//         {
-//           model: Order,
-//           include: {
-//             model: Bid,
-//             attributes: ['equipment', 'type', 'price', 'product_size_id'],
-//             include: {
-//               model: Product,
-//               attributes: ['title', 'product_image']
-//             }
-//           },
-//           include: {
-//             model: Size,
-//             attributes: ['size_product']
-//           }
-//         }
-//       ]
-//     });
-
-//     res.status(200).json({ history });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
 exports.userHistory = async (req, res, next) => {
   try {
     const history = await User.findOne({
