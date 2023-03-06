@@ -53,6 +53,21 @@ exports.createOrder = async (req, res, next) => {
       include: { model: Size }
     });
     console.log(getProductSizeId);
+    // await Bid.update(
+    //   { isSold: 1 },
+    //   {
+    //     where: {
+    //       id: bidId
+    //     }
+    //   }
+    // );
+    // .......
+    const bid = await Bid.findByPk(bidId);
+    if (!bid) {
+      return res.status(404).send('Bid not found');
+    }
+    bid.isSold = true;
+    await bid.save();
     await Order.create({
       userId,
       productId,
