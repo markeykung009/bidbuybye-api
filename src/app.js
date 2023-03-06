@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('../src/service/cron');
 const express = require('express');
 // const { sequelize } = require('./models');
 const cors = require('cors');

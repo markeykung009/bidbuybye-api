@@ -106,7 +106,6 @@ exports.getAllBids = async (req, res, next) => {
     const getBids = await Bid.findAll({
       where: {
         userId: req.user.id,
-        expiredDate: false,
         isSold: false
       },
       include: [
@@ -131,9 +130,9 @@ exports.deleteBid = async (req, res, next) => {
       }
     });
     await cancelBid.update({
-      expiredDate: req.body.expiredDate
+      expiredDate: 'CANCEL'
     });
-    res.status(200).json({ cancelBid });
+    res.status(204).json({ cancelBid });
   } catch (err) {
     next(err);
   }
