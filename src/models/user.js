@@ -4,17 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: {
         type: DataTypes.STRING
-
-        // validate: {
-        //   notEmpty: true
-        // }
       },
       lastName: {
         type: DataTypes.STRING
-
-        // validate: {
-        //   notEmpty: true
-        // }
       },
       email: {
         type: DataTypes.STRING,
@@ -36,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       },
-      omiseId: DataTypes.STRING
+      omiseId: DataTypes.STRING,
+      lineToken: DataTypes.STRING
     },
     {
       underscored: true
