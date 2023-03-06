@@ -26,8 +26,10 @@
     "mysql2": "^3.0.1",
     "node-cron": "^3.0.2",
     "omise": "^0.9.0",
-    "ps": "^1.0.0",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "uuid": "^9.0.0",
+    "ps": "^1.0.0"
+   
   },
   "devDependencies": {
     "morgan": "^1.10.0"
