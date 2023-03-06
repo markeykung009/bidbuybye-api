@@ -19,7 +19,8 @@ exports.getPriceBySize = async (req, res, next) => {
       where: {
         productSizeId: getProductSize.id,
         type: 'SELLER',
-        isSold: false
+        isSold: false,
+        expiredDate: 'NONE'
       },
       include: [
         {
@@ -58,7 +59,8 @@ exports.getPriceMaxBySize = async (req, res, next) => {
       where: {
         productSizeId: getProductSize.id,
         type: 'BUYER',
-        isSold: false
+        isSold: false,
+        expiredDate: 'NONE'
       },
       include: [
         {

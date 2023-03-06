@@ -6,7 +6,8 @@ const {
   Product,
   Brand,
   Category,
-  User
+  User,
+  OrderStatus
 } = require('../models');
 const { v4: uuidv4 } = require('uuid');
 
@@ -53,28 +54,28 @@ exports.createOrder = async (req, res, next) => {
       include: { model: Size }
     });
     console.log(getProductSizeId);
-    // await Bid.update(
-    //   { isSold: 1 },
-    //   {
-    //     where: {
-    //       id: bidId
-    //     }
-    //   }
-    // );
-    // .......
+
     const bid = await Bid.findByPk(bidId);
     if (!bid) {
       return res.status(404).send('Bid not found');
     }
     bid.isSold = true;
     await bid.save();
-    await Order.create({
+
+    const newOrder = await Order.create({
       userId,
       productId,
       transactionId,
       bidId,
       sizeId: getProductSizeId.Size.id
     });
+
+    await OrderStatus.create({
+      orderId: newOrder.dataValues.id,
+      status: 'CONFIRMED'
+    });
+
+    console.log(newOrder);
     res.status(201).send('Order created successfully');
   } catch (err) {
     console.error(err);
