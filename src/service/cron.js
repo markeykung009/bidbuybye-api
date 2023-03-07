@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const { Op } = require('sequelize');
 const { Bid } = require('../models');
 
-cron.schedule('1 * * * * *', async () => {
+cron.schedule('9 * * * * *', async () => {
   const now = new Date();
 
   await Bid.update(
