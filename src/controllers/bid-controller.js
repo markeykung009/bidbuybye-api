@@ -1,4 +1,11 @@
-const { Product, Bid, ProductSize, Size } = require('../models');
+const {
+  Product,
+  Bid,
+  ProductSize,
+  Size,
+  Order,
+  OrderStatus
+} = require('../models');
 
 //get price for buy at buyer selected size
 
@@ -12,7 +19,8 @@ exports.getPriceBySize = async (req, res, next) => {
       where: {
         productSizeId: getProductSize.id,
         type: 'SELLER',
-        isSold: false
+        isSold: false,
+        expiredDate: 'NONE'
       },
       include: [
         {
@@ -51,7 +59,8 @@ exports.getPriceMaxBySize = async (req, res, next) => {
       where: {
         productSizeId: getProductSize.id,
         type: 'BUYER',
-        isSold: false
+        isSold: false,
+        expiredDate: 'NONE'
       },
       include: [
         {
@@ -101,17 +110,40 @@ exports.postBid = async (req, res, next) => {
   }
 };
 
+// exports.getAllBids = async (req, res, next) => {
+//   try {
+//     const getBids = await Bid.findAll({
+//       where: {
+//         userId: req.user.id,
+//         isSold: false
+//       },
+//       include: [
+//         {
+//           model: ProductSize,
+//           include: [{ model: Product }, { model: Size }]
+//         }
+//       ]
+//     });
+//     res.status(200).json({ getBids });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
 exports.getAllBids = async (req, res, next) => {
   try {
     const getBids = await Bid.findAll({
       where: {
-        userId: req.user.id,
-        isSold: false
+        userId: req.user.id
       },
       include: [
         {
           model: ProductSize,
           include: [{ model: Product }, { model: Size }]
+        },
+        {
+          model: Order,
+          include: { model: OrderStatus }
         }
       ]
     });
