@@ -10,7 +10,7 @@ const sendLinenoti = async (userId) => {
 
     const url = 'https://notify-api.line.me/api/notify';
     const jsonData = {
-      message: 'คถณมาค ซื้อดิวโด้ ราคา 9999 บาท'
+      message: 'คุณมาค ซื้อดิวโด้ ราคา 9999 บาท'
     };
 
     const accessCode = lineToken;

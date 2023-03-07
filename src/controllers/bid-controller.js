@@ -1,4 +1,4 @@
-const { Product, Bid, ProductSize, Size } = require('../models');
+const { Product, Bid, ProductSize, Size, sequelize } = require('../models');
 
 //get price for buy at buyer selected size
 
@@ -119,3 +119,18 @@ exports.getAllBids = async (req, res, next) => {
     next(err);
   }
 };
+
+// อย่าใช้มันจะพัง
+// exports.getBidPrice = async (req, res, next) => {
+//   try {
+//     const getBidPrice = await Bid.findAll({
+//       where: {
+//         type: 'SELLER'
+//       },
+//       attributes: [[sequelize.fn('min', sequelize.col('price')), 'minPrice']]
+//     });
+//     res.status(201).json({ getBidPrice });
+//   } catch (err) {
+//     next(err);
+//   }
+// };

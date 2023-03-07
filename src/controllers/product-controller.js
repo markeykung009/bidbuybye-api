@@ -4,16 +4,58 @@ const {
   Category,
   Bid,
   ProductSize,
-  Size
+  Size,
+  sequelize
 } = require('../models');
+
+// exports.getProduct = async (req, res, next) => {
+//   try {
+//     const products = await Product.findAll({
+//       include: [{ model: Category }, { model: Brand }]
+//     });
+//     // console.log(products, 'products');
+//     res.status(201).json({ products });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 exports.getProduct = async (req, res, next) => {
   try {
-    const products = await Product.findAll({
-      include: [{ model: Category }, { model: Brand }]
+    const products = await ProductSize.findAll({
+      include: [
+        {
+          model: Product,
+          include: [
+            {
+              model: Brand
+            },
+            {
+              model: Category
+            }
+          ]
+        },
+        {
+          model: Bid,
+          where: {
+            type: 'SELLER'
+          },
+          attributes: ['price']
+        }
+      ]
     });
-    console.log(products, 'products');
-    res.status(201).json({ products });
+
+    let output = products.map((el) => {
+      return {
+        ProductSizeId: el.id,
+        product: el.Product,
+        sizeId: el.sizeId,
+        productId: el.productId,
+        minbid: Math.min(...el.Bids.map((el) => el.price))
+      };
+    });
+
+    res.status(201).json({ output });
   } catch (err) {
     next(err);
   }
