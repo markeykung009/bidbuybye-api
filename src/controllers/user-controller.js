@@ -1,5 +1,13 @@
 const fs = require('fs');
-const { User, Order, Bid, ProductSize, Product, Size } = require('../models');
+const {
+  User,
+  Order,
+  Bid,
+  ProductSize,
+  Product,
+  Size,
+  OrderStatus
+} = require('../models');
 const cloudinary = require('../utils/cloudinary');
 
 //update profile picture
@@ -74,7 +82,8 @@ exports.userHistory = async (req, res, next) => {
               model: Size,
               attributes: ['size_product']
             },
-            { model: Product, attributes: ['title', 'product_image'] }
+            { model: Product, attributes: ['title', 'product_image'] },
+            { model: OrderStatus, where: { status: 'COMPLETED' } }
           ]
         }
       ]
