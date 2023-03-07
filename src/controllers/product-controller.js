@@ -50,7 +50,8 @@ exports.getPriceAsk = async (req, res, next) => {
             model: Bid,
             where: {
               type: 'SELLER',
-              isSold: false
+              isSold: false,
+              expiredDate: 'NONE'
             },
             attributes: ['price']
           }
@@ -85,7 +86,8 @@ exports.getPriceBid = async (req, res, next) => {
             model: Bid,
             where: {
               type: 'BUYER',
-              isSold: false
+              isSold: false,
+              expiredDate: 'NONE'
             },
             attributes: ['price']
           }
