@@ -8,19 +8,18 @@ const {
   sequelize
 } = require('../models');
 
-// exports.getProduct = async (req, res, next) => {
-//   try {
-//     const products = await Product.findAll({
-//       include: [{ model: Category }, { model: Brand }]
-//     });
-//     // console.log(products, 'products');
-//     res.status(201).json({ products });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
-
 exports.getProduct = async (req, res, next) => {
+  try {
+    const products = await Product.findAll({
+      include: [{ model: Category }, { model: Brand }]
+    });
+    res.status(201).json({ products });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getProductMinbit = async (req, res, next) => {
   try {
     const products = await ProductSize.findAll({
       include: [
@@ -56,6 +55,28 @@ exports.getProduct = async (req, res, next) => {
     });
 
     res.status(201).json({ output });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getAllBid = async (req, res, next) => {
+  try {
+    const getAllBids = await Product.findAll({
+      attributes: ['id', 'title', 'ProductImage', 'brandId', 'categoryId'],
+      include: [
+        {
+          model: ProductSize,
+          attributes: ['id', 'sizeId', 'productId'],
+          include: {
+            model: Bid,
+            attributes: ['price', 'type']
+          }
+        }
+      ]
+    });
+
+    res.status(200).json(getAllBids);
   } catch (err) {
     next(err);
   }
@@ -99,7 +120,6 @@ exports.getPriceAsk = async (req, res, next) => {
         }
       ]
     });
-    // let x = JSON.parse(JSON.stringify(asks.ProductSizes));
     const allPrice = asks.ProductSizes.map((el) => {
       return el.Bids.map((el) => {
         return el.price;
@@ -134,7 +154,6 @@ exports.getPriceBid = async (req, res, next) => {
         }
       ]
     });
-    // let x = JSON.parse(JSON.stringify(asks.ProductSizes));
     const allPrice = asks.ProductSizes.map((el) => {
       return el.Bids.map((el) => {
         return el.price;
