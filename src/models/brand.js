@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const Brand = sequelize.define(
     'Brand',
     {
-      title: DataTypes.STRING
+      title: DataTypes.STRING,
+      brandPicture: DataTypes.STRING
     },
     { underscored: true }
   );

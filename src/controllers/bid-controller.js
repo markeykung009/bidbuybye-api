@@ -1,3 +1,4 @@
+const { Product, Bid, ProductSize, Size, sequelize } = require('../models');
 const {
   Product,
   Bid,
@@ -173,3 +174,18 @@ exports.deleteBid = async (req, res, next) => {
     next(err);
   }
 };
+
+// อย่าใช้มันจะพัง
+// exports.getBidPrice = async (req, res, next) => {
+//   try {
+//     const getBidPrice = await Bid.findAll({
+//       where: {
+//         type: 'SELLER'
+//       },
+//       attributes: [[sequelize.fn('min', sequelize.col('price')), 'minPrice']]
+//     });
+//     res.status(201).json({ getBidPrice });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
