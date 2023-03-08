@@ -6,8 +6,12 @@ const {
   Product,
   Brand,
   Category,
-  User
+  User,
+  OrderStatus
 } = require('../models');
+const { v4: uuidv4 } = require('uuid');
+
+const linenotify = require('../service/linenoti-service');
 
 const omise = require('omise')({
   publicKey: process.env.OMISE_PUBLIC_KEY,
@@ -15,7 +19,7 @@ const omise = require('omise')({
 });
 
 exports.checkoutCreditCard = async (req, res, next) => {
-  const { email, name, amount, token } = req.body;
+  const { email, name, amount, token, userId } = req.body;
 
   try {
     const customer = await omise.customers.create({
@@ -30,6 +34,8 @@ exports.checkoutCreditCard = async (req, res, next) => {
       customer: customer.id
     });
 
+    linenotify(userId, 'คุณได้ทำการสั่งซื้อเรียบร้อยแล้ว');
+
     res.send({
       amount: charge.amount,
       status: charge.status
@@ -39,6 +45,46 @@ exports.checkoutCreditCard = async (req, res, next) => {
   }
 
   // next();
+};
+
+exports.createOrder = async (req, res, next) => {
+  try {
+    const { userId, productId, bidId } = req.body;
+    const transactionId = uuidv4();
+    const getProductSizeId = await ProductSize.findOne({
+      where: {
+        productId: productId
+      },
+      include: { model: Size }
+    });
+    console.log(getProductSizeId);
+
+    const bid = await Bid.findByPk(bidId);
+    if (!bid) {
+      return res.status(404).send('Bid not found');
+    }
+    bid.isSold = true;
+    await bid.save();
+
+    const newOrder = await Order.create({
+      userId,
+      productId,
+      transactionId,
+      bidId,
+      sizeId: getProductSizeId.Size.id
+    });
+
+    await OrderStatus.create({
+      orderId: newOrder.dataValues.id,
+      status: 'CONFIRMED'
+    });
+
+    console.log(newOrder);
+    res.status(201).send('Order created successfully');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error creating order');
+  }
 };
 
 exports.getAllOrder = async (req, res, next) => {
@@ -58,7 +104,6 @@ exports.getAllOrder = async (req, res, next) => {
         { model: User }
       ]
     });
-    console.log('orderSummary');
 
     res.status(200).json(orderSummary);
   } catch (err) {

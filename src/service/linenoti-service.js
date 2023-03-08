@@ -2,7 +2,7 @@ const axios = require('axios');
 const { User } = require('../models');
 const qs = require('qs');
 
-const sendLinenoti = async (userId) => {
+const sendLinenoti = async (userId, text) => {
   try {
     const { lineToken } = await User.findOne({
       where: { id: userId }
@@ -10,7 +10,7 @@ const sendLinenoti = async (userId) => {
 
     const url = 'https://notify-api.line.me/api/notify';
     const jsonData = {
-      message: 'คุณมาค ซื้อดิวโด้ ราคา 9999 บาท'
+      message: text
     };
 
     const accessCode = lineToken;

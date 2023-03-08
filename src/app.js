@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('../src/service/cron');
 const express = require('express');
 // const { sequelize } = require('./models');
 const cors = require('cors');
@@ -50,7 +51,7 @@ app.use('/size', productRoute);
 app.use('/bid', bidRoute);
 
 app.use('/linenotify', (req, res, next) => {
-  sendLinenoti(3);
+  sendLinenoti(2, 'แฮมๆนิสัยไม่ดี');
   next();
 });
 

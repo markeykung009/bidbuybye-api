@@ -1,4 +1,14 @@
 const { Product, Bid, ProductSize, Size, sequelize } = require('../models');
+const {
+  Product,
+  Bid,
+  ProductSize,
+  Size,
+  Order,
+  OrderStatus
+} = require('../models');
+
+const linenotify = require('../service/linenoti-service');
 
 //get price for buy at buyer selected size
 
@@ -12,7 +22,8 @@ exports.getPriceBySize = async (req, res, next) => {
       where: {
         productSizeId: getProductSize.id,
         type: 'SELLER',
-        isSold: false
+        isSold: false,
+        expiredDate: 'NONE'
       },
       include: [
         {
@@ -51,7 +62,8 @@ exports.getPriceMaxBySize = async (req, res, next) => {
       where: {
         productSizeId: getProductSize.id,
         type: 'BUYER',
-        isSold: false
+        isSold: false,
+        expiredDate: 'NONE'
       },
       include: [
         {
@@ -94,12 +106,34 @@ exports.postBid = async (req, res, next) => {
       productSizeId: getProductSizeId.id,
       equipment: req.body.equipment
     });
+
+    linenotify(req.userId, 'คุณได้ทำการสั่งซื้อเรียบร้อยแล้ว');
     // console.log(getProductSizeId);
     res.status(201).json({ createBid });
   } catch (err) {
     next(err);
   }
 };
+
+// exports.getAllBids = async (req, res, next) => {
+//   try {
+//     const getBids = await Bid.findAll({
+//       where: {
+//         userId: req.user.id,
+//         isSold: false
+//       },
+//       include: [
+//         {
+//           model: ProductSize,
+//           include: [{ model: Product }, { model: Size }]
+//         }
+//       ]
+//     });
+//     res.status(200).json({ getBids });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 exports.getAllBids = async (req, res, next) => {
   try {
@@ -111,10 +145,31 @@ exports.getAllBids = async (req, res, next) => {
         {
           model: ProductSize,
           include: [{ model: Product }, { model: Size }]
+        },
+        {
+          model: Order,
+          include: { model: OrderStatus }
         }
       ]
     });
-    res.status(201).json({ getBids });
+    res.status(200).json({ getBids });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deleteBid = async (req, res, next) => {
+  try {
+    const cancelBid = await Bid.findOne({
+      where: {
+        userId: req.user.id,
+        id: req.body.id
+      }
+    });
+    await cancelBid.update({
+      expiredDate: 'CANCEL'
+    });
+    res.status(204).json({ cancelBid });
   } catch (err) {
     next(err);
   }
