@@ -110,3 +110,19 @@ exports.getAllOrder = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getAllBid = async (req, res, next) => {
+  try {
+    // console.log(req.user.id);
+    const getAllBids = await Bid.findAll({
+      // where: { userId: req.user.id },
+      include: {
+        model: User
+      }
+    });
+
+    res.status(200).json(getAllBids);
+  } catch (err) {
+    next(err);
+  }
+};

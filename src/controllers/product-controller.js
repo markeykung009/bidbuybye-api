@@ -13,6 +13,7 @@ exports.getProduct = async (req, res, next) => {
     const products = await Product.findAll({
       include: [{ model: Category }, { model: Brand }]
     });
+
     res.status(201).json({ products });
   } catch (err) {
     next(err);

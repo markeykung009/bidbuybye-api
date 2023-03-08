@@ -1,11 +1,11 @@
-const { Product, Bid, ProductSize, Size, sequelize } = require('../models');
 const {
   Product,
   Bid,
   ProductSize,
   Size,
   Order,
-  OrderStatus
+  OrderStatus,
+  sequelize
 } = require('../models');
 
 const linenotify = require('../service/linenoti-service');
