@@ -7,6 +7,8 @@ const {
   OrderStatus
 } = require('../models');
 
+const linenotify = require('../service/linenoti-service');
+
 //get price for buy at buyer selected size
 
 exports.getPriceBySize = async (req, res, next) => {
@@ -103,6 +105,8 @@ exports.postBid = async (req, res, next) => {
       productSizeId: getProductSizeId.id,
       equipment: req.body.equipment
     });
+
+    linenotify(req.userId, 'คุณได้ทำการสั่งซื้อเรียบร้อยแล้ว');
     // console.log(getProductSizeId);
     res.status(201).json({ createBid });
   } catch (err) {
