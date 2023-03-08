@@ -22,9 +22,9 @@ const adminRoute = require('./routes/adminRoute');
 
 const app = express();
 
-// const { sequelize } = require('./models');
-// sequelize.sync({ force: true });
+// const { User, sequelize } = require('./models');
 // sequelize.sync({ alter: true });
+// User.sync({ alter: true });
 
 app.use(morgan('dev'));
 app.use(
@@ -51,7 +51,7 @@ app.use('/size', productRoute);
 app.use('/bid', bidRoute);
 
 app.use('/linenotify', (req, res, next) => {
-  sendLinenoti(2);
+  sendLinenoti(2, 'แฮมๆนิสัยไม่ดี');
   next();
 });
 

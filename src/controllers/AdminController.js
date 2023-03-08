@@ -13,7 +13,6 @@ const {
 exports.adminOrder = async (req, res, next) => {
   try {
     const adminOrder = await Order.findAll({
-      where: { userId: req.user.id },
       include: [
         {
           model: Bid,
@@ -28,7 +27,7 @@ exports.adminOrder = async (req, res, next) => {
         { model: Size }
       ]
     });
-    console.log('adminOrder');
+    console.log('adminOrder', adminOrder);
     console.log(req.user.id, 'userId: req.user.id ');
 
     res.status(200).json(adminOrder);
@@ -37,20 +36,20 @@ exports.adminOrder = async (req, res, next) => {
   }
 };
 
-exports.updateStatusconfirmed = async (req, res, next) => {
+exports.updateStatusShipped = async (req, res, next) => {
   try {
-    const updateStatusconfirmed = await OrderStatus.findOne({
+    const updateStatusShipped = await OrderStatus.findOne({
       where: {
         orderId: req.body.orderId
       }
     });
 
-    if (req.body.action === 'confirmed') {
+    if (req.body.action === 'shipped') {
       await OrderStatus.update(
-        { status: 'CONFIRMED' },
+        { status: 'SHIPPED' },
         {
           where: {
-            id: updateStatusconfirmed.id
+            id: updateStatusShipped.id
           }
         }
       );
@@ -109,25 +108,25 @@ exports.updateStatusVerified = async (req, res, next) => {
   }
 };
 
-exports.updateStatusCompleted = async (req, res, next) => {
+exports.updateStatusCancel = async (req, res, next) => {
   try {
-    const updateStatusCompleted = await OrderStatus.findOne({
+    const updateStatusCancel = await OrderStatus.findOne({
       where: {
         orderId: req.body.orderId
       }
     });
 
-    if (req.body.action === 'completed') {
+    if (req.body.action === 'cancel') {
       await OrderStatus.update(
-        { status: 'COMPLETED' },
+        { status: 'CANCEL' },
         {
           where: {
-            id: updateStatusCompleted.id
+            id: updateStatusCancel.id
           }
         }
       );
     }
-    res.status(200).json({ message: 'successcompleted  Kub' });
+    res.status(200).json({ message: 'successcancel  Kub' });
   } catch (err) {
     next(err);
   }

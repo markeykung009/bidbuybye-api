@@ -4,8 +4,11 @@ const {
   ProductSize,
   Size,
   Order,
-  OrderStatus
+  OrderStatus,
+  sequelize
 } = require('../models');
+
+const linenotify = require('../service/linenoti-service');
 
 //get price for buy at buyer selected size
 
@@ -103,6 +106,8 @@ exports.postBid = async (req, res, next) => {
       productSizeId: getProductSizeId.id,
       equipment: req.body.equipment
     });
+
+    linenotify(req.userId, 'คุณได้ทำการสั่งซื้อเรียบร้อยแล้ว');
     // console.log(getProductSizeId);
     res.status(201).json({ createBid });
   } catch (err) {
@@ -169,3 +174,18 @@ exports.deleteBid = async (req, res, next) => {
     next(err);
   }
 };
+
+// อย่าใช้มันจะพัง
+// exports.getBidPrice = async (req, res, next) => {
+//   try {
+//     const getBidPrice = await Bid.findAll({
+//       where: {
+//         type: 'SELLER'
+//       },
+//       attributes: [[sequelize.fn('min', sequelize.col('price')), 'minPrice']]
+//     });
+//     res.status(201).json({ getBidPrice });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
