@@ -4,7 +4,8 @@ const {
   Category,
   Bid,
   ProductSize,
-  Size
+  Size,
+  sequelize
 } = require('../models');
 
 exports.getProduct = async (req, res, next) => {
@@ -14,6 +15,69 @@ exports.getProduct = async (req, res, next) => {
     });
 
     res.status(201).json({ products });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getProductMinbit = async (req, res, next) => {
+  try {
+    const products = await ProductSize.findAll({
+      include: [
+        {
+          model: Product,
+          include: [
+            {
+              model: Brand
+            },
+            {
+              model: Category
+            }
+          ]
+        },
+        {
+          model: Bid,
+          where: {
+            type: 'SELLER'
+          },
+          attributes: ['price']
+        }
+      ]
+    });
+
+    let output = products.map((el) => {
+      return {
+        ProductSizeId: el.id,
+        product: el.Product,
+        sizeId: el.sizeId,
+        productId: el.productId,
+        minbid: Math.min(...el.Bids.map((el) => el.price))
+      };
+    });
+
+    res.status(201).json({ output });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getAllBid = async (req, res, next) => {
+  try {
+    const getAllBids = await Product.findAll({
+      attributes: ['id', 'title', 'ProductImage', 'brandId', 'categoryId'],
+      include: [
+        {
+          model: ProductSize,
+          attributes: ['id', 'sizeId', 'productId'],
+          include: {
+            model: Bid,
+            attributes: ['price', 'type']
+          }
+        }
+      ]
+    });
+
+    res.status(200).json(getAllBids);
   } catch (err) {
     next(err);
   }
@@ -50,14 +114,14 @@ exports.getPriceAsk = async (req, res, next) => {
             model: Bid,
             where: {
               type: 'SELLER',
-              isSold: false
+              isSold: false,
+              expiredDate: 'NONE'
             },
             attributes: ['price']
           }
         }
       ]
     });
-    // let x = JSON.parse(JSON.stringify(asks.ProductSizes));
     const allPrice = asks.ProductSizes.map((el) => {
       return el.Bids.map((el) => {
         return el.price;
@@ -85,14 +149,14 @@ exports.getPriceBid = async (req, res, next) => {
             model: Bid,
             where: {
               type: 'BUYER',
-              isSold: false
+              isSold: false,
+              expiredDate: 'NONE'
             },
             attributes: ['price']
           }
         }
       ]
     });
-    // let x = JSON.parse(JSON.stringify(asks.ProductSizes));
     const allPrice = asks.ProductSizes.map((el) => {
       return el.Bids.map((el) => {
         return el.price;

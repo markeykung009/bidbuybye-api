@@ -51,7 +51,7 @@ app.use('/size', productRoute);
 app.use('/bid', bidRoute);
 
 app.use('/linenotify', (req, res, next) => {
-  sendLinenoti(3);
+  sendLinenoti(2, 'แฮมๆนิสัยไม่ดี');
   next();
 });
 
