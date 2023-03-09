@@ -694,7 +694,6 @@ const brand = [
       'https://i.pinimg.com/564x/a7/4f/ae/a74faec4cb92a38c2e7be1ca73428798.jpg'
   }
 ];
-
 const category = [
   {
     typeProduct: 'Shoes'
