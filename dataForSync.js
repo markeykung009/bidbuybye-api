@@ -259,6 +259,401 @@ const product = [
     color: 'White',
     ProductImage:
       'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820700/product%20image/75_wgyqaw.png'
+  },
+  {
+    title: 'Jordan 1 Retro High OG Lost and Found',
+    skuProduct: 'AA076',
+    color: 'White/Black-Grey Fog-Bleached Coral',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820672/product%20image/6_isrbpp.png',
+    brandId: '1',
+    categoryId: '1'
+  },
+  {
+    title: 'Jordan 4 Retro Seafoam (W)',
+    skuProduct: 'AA077',
+    color: 'WHITE/SEAFOAM/DARK ASH/NEUTRAL GREY',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820676/product%20image/7_lekjda.png',
+    brandId: '1',
+    categoryId: '1'
+  },
+  {
+    title: 'Nike Dunk Low Essential Paisley Pack Pink (W)',
+    skuProduct: 'AA078',
+    color: 'White/Pearl Pink',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820674/product%20image/8_ckmy6x.png',
+    brandId: '1',
+    categoryId: '1'
+  },
+  {
+    title: 'Nike Air Force 1 Low Travis Scott Cactus Jack',
+    skuProduct: 'AA079',
+    color: 'MULTI-COLOR/MUTED BRONZE-FOSSIL',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820684/product%20image/9_uno3s8.png',
+    brandId: '1',
+    categoryId: '1'
+  },
+  {
+    title: 'Nike Benassi Slide Stussy Fossil',
+    skuProduct: 'AA081',
+    color: 'Camel',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820678/product%20image/11_tljano.png',
+    brandId: '1',
+    categoryId: '1'
+  },
+  {
+    title: 'Nike SB Dunk High FAUST Black Gold',
+    skuProduct: 'AA082',
+    color: 'BLACK/GOLD',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820675/product%20image/12_mo2cot.png',
+    brandId: '1',
+    categoryId: '1'
+  },
+  {
+    title: 'Nike Moc Flow SP Undercover Light Bone',
+    skuProduct: 'AA083',
+    color: 'BLACK/LIGHT BONE/UNIVERSITY RED/WHITEGOLD',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820676/product%20image/13_yucjsu.png',
+    brandId: '2',
+    categoryId: '1'
+  },
+  {
+    title: 'adidas Adilette 22 Slides Grey',
+    skuProduct: 'AA084',
+    color: 'Grey',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820678/product%20image/21_h9ys3s.png',
+    brandId: '2',
+    categoryId: '1'
+  },
+  {
+    title: 'adidas adiFOM Q Black Carbon',
+    skuProduct: 'AA085',
+    color: 'Core Black/Carbon/Grey Six',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820681/product%20image/22_utwnij.png',
+    brandId: '2',
+    categoryId: '1'
+  },
+  {
+    title: 'adidas Superturf Adventure Sean Wotherspoon x Hot Wheels',
+    skuProduct: 'AA086',
+    color: 'Cloud White / Bold Gold / Blue Bird',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820681/product%20image/23_mfitez.png',
+    brandId: '2',
+    categoryId: '1'
+  },
+  {
+    title: 'adidas Forum Low Altered Blue',
+    skuProduct: 'AA087',
+    color: 'Off White/Altered Blue',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820689/product%20image/27_jdovlk.png',
+    brandId: '2',
+    categoryId: '1'
+  },
+  {
+    title: 'adidas Orketro Sean Wotherspoon',
+    skuProduct: 'AA088',
+    color: 'SUPPLIER COLOR/WHITE/EASY YELLOW',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820694/product%20image/25_wymrhw.png',
+    brandId: '2',
+    categoryId: '1'
+  },
+  {
+    title: 'New Balance 993 Joe Freshgoods Performance Art Arctic Blue',
+    skuProduct: 'AA089',
+    color: 'Arctic Blue/Vintage Rose',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820686/product%20image/31_sufklv.png'
+  },
+  {
+    title: 'New Balance 2002R Off White',
+    skuProduct: 'AA090',
+    color: 'Off White',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820686/product%20image/32_yuyopc.png',
+    brandId: '3',
+    categoryId: '1'
+  },
+  {
+    title: 'New Balance 1906R White Grey Cream',
+    skuProduct: 'AA091',
+    color: 'White/Grey/Cream',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820691/product%20image/33_wtspel.png',
+    brandId: '3',
+    categoryId: '1'
+  },
+  {
+    title: 'New Balance 327 Multicolor',
+    skuProduct: 'AA092',
+    color: 'White/Black/Blue/Green',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820682/product%20image/34_uivtw2.png',
+    brandId: '3',
+    categoryId: '1'
+  },
+  {
+    title: 'New Balance Vision Racer Jaden Smith Trippy Summer Jade',
+    skuProduct: 'AA093',
+    color: 'WHITE/SUMMER JADE',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820684/product%20image/35_b8mhuu.png',
+    brandId: '3',
+    categoryId: '1'
+  },
+  {
+    title: 'New Balance 992 Triple Black',
+    skuProduct: 'AA094',
+    color: 'Triple Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820683/product%20image/36_drpp0g.png',
+    brandId: '3',
+    categoryId: '1'
+  },
+  {
+    title: 'New Balance 550 White Grey',
+    skuProduct: 'AA095',
+    color: 'White Grey',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820683/product%20image/37_zood4k.png',
+    brandId: '3',
+    categoryId: '1'
+  },
+  {
+    title: 'STUSSY PATCHWORK ZIP JACKET Multi',
+    skuProduct: 'AA096',
+    color: 'Multicolor',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820699/product%20image/56_qjfxkd.png',
+    brandId: '4',
+    categoryId: '2'
+  },
+  {
+    title: 'STUSSY Butterfly Sweat Pants Black',
+    skuProduct: 'AA097',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820695/product%20image/57_zrc06g.png',
+    brandId: '4',
+    categoryId: '2'
+  },
+  {
+    title: 'STUSSY PATCHWORK ZIP JACKET Multi',
+    skuProduct: 'AA098',
+    color: 'Multicolor',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820699/product%20image/58_mkkmgi.png',
+    brandId: '4',
+    categoryId: '2'
+  },
+  {
+    title: 'STUSSY Butterfly Sweat Pants Black',
+    skuProduct: 'AA099',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820701/product%20image/59_h7m2sk.png',
+    brandId: '4',
+    categoryId: '2'
+  },
+  {
+    title: 'STUSSY DRIFT PANT Pink',
+    skuProduct: 'AA100',
+    color: 'Pink',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820699/product%20image/58_mkkmgi.png',
+    brandId: '4',
+    categoryId: '2'
+  },
+  {
+    title: 'STUSSY SKYLINE TEE Black',
+    skuProduct: 'AA101',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820691/product%20image/60_yfmfqw.png',
+    brandId: '4',
+    categoryId: '2'
+  },
+  {
+    title:
+      'Carnival X Netflix Squid Game Player Number T-shirt Limited Edition 456 Pieces',
+    skuProduct: 'AA102',
+    color: 'White',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820697/product%20image/66_xda6ng.png',
+    brandId: '5',
+    categoryId: '2'
+  },
+  {
+    title: 'Carnival X Gongkan VI Boy T-Shirt White',
+    skuProduct: 'AA103',
+    color: 'White',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820693/product%20image/67_df3dzz.png',
+    brandId: '5',
+    categoryId: '2'
+  },
+  {
+    title: 'Carnival X MMFK Hawaii Shirt Hellyeah!',
+    skuProduct: 'AA104',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820687/product%20image/68_o22rht.avif',
+    brandId: '5',
+    categoryId: '2'
+  },
+  {
+    title: 'Carnival Warp Check Easy Shorts Navy',
+    skuProduct: 'AA105',
+    color: 'Navy',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820706/product%20image/69_pacbez.png',
+    brandId: '5',
+    categoryId: '2'
+  },
+  {
+    title: 'Anti Social Social Club x Paul Frank Lounge Tee Dark Chocolate',
+    skuProduct: 'AA106',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820698/product%20image/76_tskwvc.png',
+    brandId: '6',
+    categoryId: '2'
+  },
+  {
+    title: 'Anti Social Social Club Back Pain Tee Black',
+    skuProduct: 'AA107',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820706/product%20image/77_avhwei.png',
+    brandId: '6',
+    categoryId: '2'
+  },
+  {
+    title: 'Anti Social Social Club Pink All Over You Hoodie',
+    skuProduct: 'AA108',
+    color: 'Pink',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820704/product%20image/78_znsbsm.png',
+    brandId: '6',
+    categoryId: '2'
+  },
+  {
+    title: 'Anti Social Social Club Torn Pages Of Our Story Zip Hoodie Black',
+    skuProduct: 'AA109',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820708/product%20image/79_putkfa.png',
+    brandId: '6',
+    categoryId: '2'
+  },
+  {
+    title: 'ASSC x Hello Kitty Black',
+    skuProduct: 'AA110',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820701/product%20image/80_ciz8fx.png',
+    brandId: '6',
+    categoryId: '2'
+  },
+  {
+    title: 'Fear of God Essentials T-shirt Stretch Limo (SS22)',
+    skuProduct: 'AA111',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820704/product%20image/81_htqdpt.png',
+    brandId: '7',
+    categoryId: '2'
+  },
+  {
+    title: 'Uniqlo Kaws Pink BFF Tee White',
+    skuProduct: 'AA112',
+    color: 'White',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820706/product%20image/82_oaqndh.png',
+    brandId: '7',
+    categoryId: '2'
+  },
+  {
+    title: 'KAWS x Human Made #7 Tee Black',
+    skuProduct: 'AA113',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820707/product%20image/83_ctyvpa.png',
+    brandId: '7',
+    categoryId: '2'
+  },
+  {
+    title: 'KAWS x Human Made #3 T-shirt Black',
+    skuProduct: 'AA114',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820707/product%20image/84_c9ibfw.png',
+    brandId: '7',
+    categoryId: '2'
+  },
+  {
+    title: 'Kaws Brooklyn Museum What Party T-shirt Light Pink',
+    skuProduct: 'AA115',
+    color: 'Light Pink',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820942/product%20image/85_wy0vec.png',
+    brandId: '7',
+    categoryId: '2'
+  },
+  {
+    title: 'KAWS x The North Face Retro 1996 Nuptse Jacket Black',
+    skuProduct: 'AA116',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820713/product%20image/86_pomgrx.png',
+    brandId: '7',
+    categoryId: '2'
+  },
+  {
+    title: 'Kaws Brooklyn Museum URGE T-shirt White/Purple',
+    skuProduct: 'AA117',
+    color: 'White/Purple',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820709/product%20image/87_im70zu.png',
+    brandId: '7',
+    categoryId: '2'
+  },
+  {
+    title: 'KAWS x Uniqlo Clean Slate Tee (Asia Sizing) Red',
+    skuProduct: 'AA118',
+    color: 'Red',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820708/product%20image/88_xpziqp.png',
+    brandId: '7',
+    categoryId: '2'
+  },
+  {
+    title: 'KAWS x Dover Street Market Fluro Rebellion T-shirt Orange',
+    skuProduct: 'AA119',
+    color: 'White',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820712/product%20image/89_c4vf6g.png',
+    brandId: '7',
+    categoryId: '2'
+  },
+  {
+    title: 'Infinite Archives x KAWS Rebuild T-shirt Black',
+    skuProduct: 'AA120',
+    color: 'Black',
+    ProductImage:
+      'https://res.cloudinary.com/dpvsogggn/image/upload/v1676820708/product%20image/90_umw2td.png',
+    brandId: '7',
+    categoryId: '2'
   }
 ];
 
