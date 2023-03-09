@@ -50,10 +50,10 @@ app.use('/checkout', checkoutRoutes);
 app.use('/size', productRoute);
 app.use('/bid', bidRoute);
 
-app.use('/linenotify', (req, res, next) => {
-  sendLinenoti(2, 'แฮมๆนิสัยไม่ดี');
-  next();
-});
+// app.use('/linenotify', (req, res, next) => {
+//   sendLinenoti(2, 'แฮมๆนิสัยไม่ดี');
+//   next();
+// });
 
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
