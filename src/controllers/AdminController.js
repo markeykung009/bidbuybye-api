@@ -10,6 +10,8 @@ const {
   OrderStatus
 } = require('../models');
 
+const { sendLinenoti } = require('../service/linenoti-service');
+
 exports.adminOrder = async (req, res, next) => {
   try {
     const adminOrder = await Order.findAll({
@@ -54,6 +56,9 @@ exports.updateStatusShipped = async (req, res, next) => {
         }
       );
     }
+
+    sendLinenoti(2, 'สินค้าคุณถูกจัดส่งแล้ว');
+
     res.status(200).json({ message: 'success Kub' });
   } catch (err) {
     next(err);
@@ -78,6 +83,8 @@ exports.updateStatusarrived = async (req, res, next) => {
         }
       );
     }
+    sendLinenoti(2, 'สินค้าถึงคลังแล้ว');
+
     res.status(200).json({ message: 'successarrived Kub' });
   } catch (err) {
     next(err);
@@ -102,6 +109,9 @@ exports.updateStatusVerified = async (req, res, next) => {
         }
       );
     }
+
+    sendLinenoti(2, 'สินค้าของคุณได้รับการตรวจสอบแล้ว');
+
     res.status(200).json({ message: 'successVerified  Kub' });
   } catch (err) {
     next(err);
@@ -126,6 +136,12 @@ exports.updateStatusCancel = async (req, res, next) => {
         }
       );
     }
+
+    sendLinenoti(
+      2,
+      'สินค้าของคุณไม่ผ่านการตรวจสอบ จะดำเนินการคืนเงินภายใน 30-45 วัน'
+    );
+
     res.status(200).json({ message: 'successcancel  Kub' });
   } catch (err) {
     next(err);

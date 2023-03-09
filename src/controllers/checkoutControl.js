@@ -11,6 +11,8 @@ const {
 } = require('../models');
 const { v4: uuidv4 } = require('uuid');
 
+const { sendLinenoti } = require('../service/linenoti-service');
+
 const omise = require('omise')({
   publicKey: process.env.OMISE_PUBLIC_KEY,
   secretKey: process.env.OMISE_SECRET_KEY
@@ -31,6 +33,8 @@ exports.checkoutCreditCard = async (req, res, next) => {
       currency: 'thb',
       customer: customer.id
     });
+
+    sendLinenoti(2, 'สินค้าของคุณได้ทำการขายแล้ว');
 
     res.send({
       amount: charge.amount,
