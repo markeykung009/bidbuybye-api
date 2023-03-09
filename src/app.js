@@ -51,7 +51,7 @@ app.use('/size', productRoute);
 app.use('/bid', bidRoute);
 
 app.use('/linenotify', (req, res, next) => {
-  sendLinenoti(2, 'แฮมๆนิสัยไม่ดี');
+  sendLinenoti(2, 'สินค้าของตุณได้รับการซื้อแล้วครับ');
   next();
 });
 
