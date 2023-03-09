@@ -263,14 +263,42 @@ const product = [
 ];
 
 const brand = [
-  { title: 'Nike' },
-  { title: 'Adidas' },
-  { title: 'New Balance' },
-  { title: 'Stussy' },
-  { title: 'Carnival' },
-  { title: 'CarnAnti Social Social Clubival' }
+  {
+    title: 'Nike',
+    brandPicture:
+      'https://i.pinimg.com/564x/33/e6/3d/33e63d5adb0da6b303a83901c8e8463a.jpg'
+  },
+  {
+    title: 'Adidas',
+    brandPicture:
+      'https://i.pinimg.com/564x/97/99/54/9799549c927c4c7f8af2c1be70f3da03.jpg'
+  },
+  {
+    title: 'New Balance',
+    brandPicture:
+      'https://i.pinimg.com/564x/2b/53/d1/2b53d1943a739d6e45f1405d8f3b1b48.jpg'
+  },
+  {
+    title: 'Stussy',
+    brandPicture:
+      'https://i.pinimg.com/564x/70/cf/2e/70cf2eb6d18ee69c468d131bc0bffcce.jpg'
+  },
+  {
+    title: 'Carnival',
+    brandPicture:
+      'https://i.pinimg.com/564x/02/63/df/0263dff2a2901eaf6cddc4e861551b56.jpg'
+  },
+  {
+    title: 'CarnAnti Social Social Clubival',
+    brandPicture:
+      'https://i.pinimg.com/564x/30/70/34/307034045d313d520857dca73df90abf.jpg'
+  },
+  {
+    title: 'Kaws',
+    brandPicture:
+      'https://i.pinimg.com/564x/a7/4f/ae/a74faec4cb92a38c2e7be1ca73428798.jpg'
+  }
 ];
-
 const category = [
   {
     typeProduct: 'Shoes'

@@ -22,9 +22,9 @@ const adminRoute = require('./routes/adminRoute');
 
 const app = express();
 
-// const { User, sequelize } = require('./models');
-// sequelize.sync({ force: true });
-// User.sync({ alter: true });
+// const { User, sequelize, Bid, Order, OrderStatus, Brand } = require('./models');
+// Bid.sync({ force: true });
+// Brand.sync({ alter: true });
 
 app.use(morgan('dev'));
 app.use(
