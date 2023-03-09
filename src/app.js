@@ -22,8 +22,8 @@ const adminRoute = require('./routes/adminRoute');
 
 const app = express();
 
-// const { sequelize } = require('./models');
-// sequelize.sync({ force: true });
+// const { User, sequelize, Bid, Order, OrderStatus, Brand } = require('./models');
+// Bid.sync({ force: true });
 // sequelize.sync({ alter: true });
 
 app.use(morgan('dev'));
@@ -50,10 +50,10 @@ app.use('/checkout', checkoutRoutes);
 app.use('/size', productRoute);
 app.use('/bid', bidRoute);
 
-app.use('/linenotify', (req, res, next) => {
-  sendLinenoti(2, 'สินค้าของตุณได้รับการซื้อแล้วครับ');
-  next();
-});
+// app.use('/linenotify', (req, res, next) => {
+//   sendLinenoti(2, 'สินค้าของตุณได้รับการซื้อแล้วครับ');
+//   next();
+// });
 
 app.use('/auth', authRoute);
 app.use('/user', userRoute);

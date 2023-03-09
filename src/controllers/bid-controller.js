@@ -4,8 +4,11 @@ const {
   ProductSize,
   Size,
   Order,
-  OrderStatus
+  OrderStatus,
+  sequelize
 } = require('../models');
+
+// const linenotify = require('../service/linenoti-service');
 
 //get price for buy at buyer selected size
 
@@ -104,6 +107,7 @@ exports.postBid = async (req, res, next) => {
       equipment: req.body.equipment
     });
 
+    // linenotify(req.userId, 'คุณได้ทำการสั่งซื้อเรียบร้อยแล้ว');
     // console.log(getProductSizeId);
     res.status(201).json({ createBid });
   } catch (err) {
